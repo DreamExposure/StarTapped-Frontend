@@ -16,3 +16,4 @@ out/
 **/META-INF/
 **/dependency-reduced-pom.xml
 **/target
+**/node_modules

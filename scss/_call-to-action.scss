@@ -1,7 +1,9 @@
+@import "mixins";
+@import "variables";
+
 .call-to-action {
   position: relative;
-  background-color: $gray-800;
-  background: url('../img/bg-masthead.jpg') no-repeat center center;
+  background: $gray-800 url('../img/landing/bg-masthead.jpg') no-repeat center center;
   @include background-cover;
   padding-top: 7rem;
   padding-bottom: 7rem;

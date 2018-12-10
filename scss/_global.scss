@@ -1,3 +1,6 @@
+@import "mixins";
+@import "variables";
+
 body {
   @include body-font;
 }
@@ -10,4 +13,20 @@ h5,
 h6 {
   @include body-font;
   font-weight: 700;
+}
+
+.underline-solid {
+  text-decoration: underline solid;
+}
+
+.underline-dotted {
+  text-decoration: underline dotted;
+}
+
+.strikethrough-solid {
+  text-decoration: line-through solid;
+}
+
+.strikethrough-dotted {
+  text-decoration: line-through dotted;
 }

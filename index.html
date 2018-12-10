@@ -50,6 +50,12 @@
 
 		<!-- Custom styles for this template -->
 		<link href="css/landing-page.min.css" rel="stylesheet">
+		<link href="css/snackbar.min.css" rel="stylesheet">
+
+		<!--JS-->
+		<script src="js/account/sign-up.js"></script>
+		<script src="js/account/sign-in.js"></script>
+		<script src="js/snackbar.js"></script>
 
 		<!--Externally Hosted-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
@@ -59,12 +65,13 @@
 	<body>
 
 		<!-- Navigation -->
-		<nav class="navbar navbar-light bg-light static-top">
+		<nav class="navbar navbar-dark bg-dark static-top">
 			<div class="container">
-				<a class="navbar-brand" href="#">Start Bootstrap</a>
-				<a class="btn btn-primary" href="#">Sign In</a>
+				<a class="navbar-brand" href="#">StarTapped</a>
+				<button class="btn btn-primary" data-toggle="modal" data-target="#modal-sign-in">Sign In</button>
 			</div>
 		</nav>
+
 
 		<!-- Masthead -->
 		<header class="masthead text-white text-center">
@@ -72,45 +79,35 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-9 mx-auto">
-						<h1 class="mb-5">Build a landing page for your business or project and generate more leads!</h1>
+						<h1 class="mb-5">A Blogging Platform For Everyone, By Everyone!</h1>
 					</div>
 					<div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-						<form>
-							<div class="form-row">
-								<div class="col-12 col-md-9 mb-2 mb-md-0">
-									<input type="email" class="form-control form-control-lg"
-									       placeholder="Enter your email...">
-								</div>
-								<div class="col-12 col-md-3">
-									<button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
-								</div>
-							</div>
-						</form>
+						<button type="button" class="btn btn-block btn-lg btn-primary theme-primary" data-toggle="modal" data-target="#modal-sign-up">Sign up!</button>
 					</div>
 				</div>
 			</div>
 		</header>
 
 		<!-- Icons Grid -->
-		<section class="features-icons bg-light text-center">
+		<section class="features-icons bg-dark text-center text-light">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-4">
 						<div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
 							<div class="features-icons-icon d-flex">
-								<i class="icon-screen-desktop m-auto text-primary"></i>
+								<i class="icon-docs m-auto text-primary"></i>
 							</div>
-							<h3>Fully Responsive</h3>
-							<p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
+							<h3>Fully Customizable</h3>
+							<p class="lead mb-0">Let your blog represent who you are!</p>
 						</div>
 					</div>
 					<div class="col-lg-4">
 						<div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
 							<div class="features-icons-icon d-flex">
-								<i class="icon-layers m-auto text-primary"></i>
+								<i class="icon-speech m-auto text-primary"></i>
 							</div>
-							<h3>Bootstrap 4 Ready</h3>
-							<p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p>
+							<h3>Content Friendly</h3>
+							<p class="lead mb-0">Freedom of Speech is our #1 priority!</p>
 						</div>
 					</div>
 					<div class="col-lg-4">
@@ -119,7 +116,7 @@
 								<i class="icon-check m-auto text-primary"></i>
 							</div>
 							<h3>Easy to Use</h3>
-							<p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
+							<p class="lead mb-0">1, 2, 3 is all it takes to make your blog!</p>
 						</div>
 					</div>
 				</div>
@@ -129,55 +126,50 @@
 		<!-- Image Showcases -->
 		<section class="showcase">
 			<div class="container-fluid p-0">
-				<div class="row no-gutters">
+				<div class="row">
 
 					<div class="col-lg-6 order-lg-2 text-white showcase-img"
-					     style="background-image: url('img/bg-showcase-1.jpg');"></div>
+					     style="background-image: url('img/landing/bg-showcase-2.jpg');"></div>
 					<div class="col-lg-6 order-lg-1 my-auto showcase-text">
-						<h2>Fully Responsive Design</h2>
-						<p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme
-							will look great on any device, whether it's a phone, tablet, or desktop the page will behave
-							responsively!</p>
+						<h2>Custom Blogs</h2>
+						<p class="lead mb-0">Blogs are meant to represent you, not us. Customize your blog in almost every way. Content, name, URL, image, and more! Just like the (former?) number one blogging platform.</p>
 					</div>
 				</div>
-				<div class="row no-gutters">
+				<div class="row">
 					<div class="col-lg-6 text-white showcase-img"
-					     style="background-image: url('img/bg-showcase-2.jpg');"></div>
+					     style="background-image: url('img/landing/bg-showcase-1.jpg');"></div>
 					<div class="col-lg-6 my-auto showcase-text">
-						<h2>Updated For Bootstrap 4</h2>
-						<p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 4 is leading
-							the way in mobile responsive web development! All of the themes on Start Bootstrap are now
-							using Bootstrap 4!</p>
+						<h2>Censorship isn't Okay</h2>
+						<p class="lead mb-0">The (former?) number one blogging platform failed to remove hate speech and banned sex-ed. That isn't the case here however. We promote content of all types, while disallowing hate speech. Finally a blogging platform for all.</p>
 					</div>
 				</div>
-				<div class="row no-gutters">
+				<div class="row">
 					<div class="col-lg-6 order-lg-2 text-white showcase-img"
-					     style="background-image: url('img/bg-showcase-3.jpg');"></div>
+					     style="background-image: url('img/landing/bg-showcase-3.jpg');"></div>
 					<div class="col-lg-6 order-lg-1 my-auto showcase-text">
-						<h2>Easy to Use &amp; Customize</h2>
-						<p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who
-							demand some deeper customization options. Out of the box, just add your content and images,
-							and your new landing page will be ready to go!</p>
+						<h2>Easy to Use</h2>
+						<p class="lead mb-0">With a straight forward design and use, Star Tapped is an intuitive to use blogging platform.</p>
 					</div>
 				</div>
 			</div>
 		</section>
 
 		<!-- Testimonials -->
+		<!--TODO: Get actual testimonials :D
 		<section class="testimonials text-center bg-light">
 			<div class="container">
 				<h2 class="mb-5">What people are saying...</h2>
 				<div class="row">
 					<div class="col-lg-4">
 						<div class="testimonial-item mx-auto mb-5 mb-lg-0">
-							<img class="img-fluid rounded-circle mb-3" src="img/testimonials-1.jpg" alt="">
+							<img class="img-fluid rounded-circle mb-3" src="img/landing/testimonials-1.jpg" alt="">
 							<h5>Margaret E.</h5>
 							<p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
 						</div>
 					</div>
 					<div class="col-lg-4">
 						<div class="testimonial-item mx-auto mb-5 mb-lg-0">
-							<img class="img-fluid rounded-circle mb-3" src="img/testimonials-2.jpg" alt="">
+							<img class="img-fluid rounded-circle mb-3" src="img/landing/testimonials-2.jpg" alt="">
 							<h5>Fred S.</h5>
 							<p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots
 								of super nice landing pages."</p>
@@ -185,7 +177,7 @@
 					</div>
 					<div class="col-lg-4">
 						<div class="testimonial-item mx-auto mb-5 mb-lg-0">
-							<img class="img-fluid rounded-circle mb-3" src="img/testimonials-3.jpg" alt="">
+							<img class="img-fluid rounded-circle mb-3" src="img/landing/testimonials-3.jpg" alt="">
 							<h5>Sarah W.</h5>
 							<p class="font-weight-light mb-0">"Thanks so much for making these free resources available
 								to us!"</p>
@@ -194,6 +186,7 @@
 				</div>
 			</div>
 		</section>
+		-->
 
 		<!-- Call to Action -->
 		<section class="call-to-action text-white text-center">
@@ -204,51 +197,41 @@
 						<h2 class="mb-4">Ready to get started? Sign up now!</h2>
 					</div>
 					<div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-						<form>
-							<div class="form-row">
-								<div class="col-12 col-md-9 mb-2 mb-md-0">
-									<input type="email" class="form-control form-control-lg"
-									       placeholder="Enter your email...">
-								</div>
-								<div class="col-12 col-md-3">
-									<button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
-								</div>
-							</div>
-						</form>
+						<button type="button" class="btn btn-block btn-lg btn-primary" data-toggle="modal" data-target="#modal-sign-up">Sign up!</button>
 					</div>
 				</div>
 			</div>
 		</section>
 
 		<!-- Footer -->
-		<footer class="footer bg-light">
+		<footer class="footer bg-dark">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6 h-100 text-center text-lg-left my-auto">
 						<ul class="list-inline mb-2">
 							<li class="list-inline-item">
-								<a href="#">About</a>
+								<a class="text-link-color underline-solid" href="https://www.dreamexposure.org/contact" target="_blank">Contact</a>
 							</li>
-							<li class="list-inline-item">&sdot;</li>
+							<li class="list-inline-item text-light">&sdot;</li>
 							<li class="list-inline-item">
-								<a href="#">Contact</a>
+								<a class="text-link-color underline-solid" href="#">Terms of Service</a>
 							</li>
-							<li class="list-inline-item">&sdot;</li>
+							<li class="list-inline-item text-light">&sdot;</li>
 							<li class="list-inline-item">
-								<a href="#">Terms of Use</a>
+								<a class="text-link-color underline-solid" href="https://www.dreamexposure.org/policy/privacy" target="_blank">Privacy Policy</a>
 							</li>
-							<li class="list-inline-item">&sdot;</li>
+							<li class="list-inline-item text-light">&sdot;</li>
 							<li class="list-inline-item">
-								<a href="#">Privacy Policy</a>
+								<a class="text-link-color underline-solid" href="https://www.dreamexposure.org" target="_blank">DreamExposure</a>
 							</li>
 						</ul>
-						<p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2018. All Rights Reserved.</p>
+						<p class="text-muted small mb-4 mb-lg-0">&copy; DreamExposure Studios 2018. All Rights Reserved.</p>
 					</div>
 					<div class="col-lg-6 h-100 text-center text-lg-right my-auto">
 						<ul class="list-inline mb-0">
 							<li class="list-inline-item mr-3">
-								<a href="#">
-									<i class="fab fa-facebook fa-2x fa-fw"></i>
+								<a href="https://github.com/DreamExposure" target="_blank">
+									<i class="fab fa-github fa-2x fa-fw"></i>
 								</a>
 							</li>
 							<li class="list-inline-item mr-3">
@@ -267,8 +250,87 @@
 			</div>
 		</footer>
 
+		<!--Modals-->
+		<!--Sign in modal-->
+		<div class="modal fade" id="modal-sign-in" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content bg-dark">
+					<div class="modal-header">
+						<h4 class="modal-title text-light">Sign In</h4>
+					</div>
+					<div class="modal-body">
+						<form style="text-align: center;" id="sign-in-form" action="javascript:signIn()">
+							<label>
+								<input class="rounded" name="email" type="email" id="sign-in-email" required="required" placeholder="Email">
+							</label>
+							<br>
+							<label>
+								<input class="rounded" name="password" type="password" id="sign-in-password" required="required" placeholder="Password">
+							</label>
+							<br>
+							<div class="text-center">
+								<div class="g-recaptcha" data-sitekey="6Ld7tH8UAAAAAMKQYWXUow35mu_eJKaxEBdoRFJ3"></div>
+							</div>
+							<input type="submit" class="btn btn-large btn-primary" value="Sign In" id="sign-in-submit">
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-sm btn-primary icon-close" data-dismiss="modal"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--Sign up modal-->
+		<div class="modal fade" id="modal-sign-up" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content bg-dark">
+					<div class="modal-header">
+						<h4 class="modal-title text-light">Sign Up</h4>
+					</div>
+					<div class="modal-body">
+						<form style="text-align: center;" id="sign-up-form" action="javascript:signUp()">
+							<label>
+								<input class="rounded" name="email" type="email" id="sign-up-email" required="required" placeholder="Email">
+							</label>
+							<br>
+							<label>
+								<input class="rounded" name="username" type="text" id="sign-up-username" required="required" placeholder="Username" minlength="6" maxlength="32">
+							</label>
+							<br>
+							<label class="text-light">Birthday
+								<input class="rounded" name="birthday" type="date" id="sign-up-birthday" required="required" placeholder="birthday">
+							</label>
+							<br>
+							<label>
+								<input class="rounded" name="password" type="password" id="sign-up-password" required="required" placeholder="Password">
+							</label>
+							<br>
+							<label>
+								<input class="rounded" name="password" type="password" id="sign-up-password-confirm" required="required" placeholder="Retype Password" onchange="checkPasswordValidity(this)">
+							</label>
+							<br>
+							<div class="text-center">
+								<div class="g-recaptcha" data-sitekey="6Ld7tH8UAAAAAMKQYWXUow35mu_eJKaxEBdoRFJ3"></div>
+							</div>
+							<input type="submit" class="btn btn-large btn-primary" value="Sign Up" id="sign-up-submit">
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-sm btn-primary icon-close" data-dismiss="modal"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--Snackbar-->
+		<div id="snackbar"></div>
+
 		<!-- Bootstrap core JavaScript -->
 		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src='https://www.google.com/recaptcha/api.js'></script>
 
 	</body>
 

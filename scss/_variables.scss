@@ -1,5 +1,8 @@
 // Variables
-
+//noinspection CssUnknownTarget
+@import "./node_modules/bootstrap/scss/functions";
+//noinspection CssUnknownTarget
+@import "./node_modules/bootstrap/scss/variables";
 // Restated Bootstrap Variables
 
 $white: #fff !default;
@@ -33,3 +36,19 @@ $warning: $yellow !default;
 $danger: $red !default;
 $light: $gray-100 !default;
 $dark: $gray-800 !default;
+
+$link-color: #3572f5 !default;
+
+$theme-colors: (
+        primary: #b5532d,
+        secondary: #8FB0B2,
+        info: $gray-500,
+        success: #6c9346,
+        warning: #e9830e,
+        danger: #f44336,
+
+        light: #F1EDE2,
+        dark: #1F2635,
+
+        link-color: #3572f5,
+);

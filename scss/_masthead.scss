@@ -1,7 +1,9 @@
+@import "variables";
+@import "mixins";
+
 header.masthead {
   position: relative;
-  background-color: $gray-800;
-  background: url('../img/bg-masthead.jpg') no-repeat center center;
+  background: $gray-800 url('../img/landing/bg-masthead.jpg') no-repeat center center;
   @include background-cover;
   padding-top: 8rem;
   padding-bottom: 8rem;
