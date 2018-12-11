@@ -55,6 +55,7 @@
 		<!--JS-->
 		<script src="js/account/sign-up.js"></script>
 		<script src="js/account/sign-in.js"></script>
+		<script src="js/account/auth.js"></script>
 		<script src="js/snackbar.js"></script>
 
 		<!--Externally Hosted-->
@@ -62,7 +63,7 @@
 		        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	</head>
 
-	<body>
+	<body onload="initOnLandingPage()">
 
 		<!-- Navigation -->
 		<nav class="navbar navbar-dark bg-dark static-top">
@@ -330,6 +331,7 @@
 
 		<!-- Bootstrap core JavaScript -->
 		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="vendor/cookie/cookie.min.js"></script>
 		<script src='https://www.google.com/recaptcha/api.js'></script>
 
 	</body>

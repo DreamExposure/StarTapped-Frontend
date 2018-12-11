@@ -14,6 +14,9 @@ function signIn() {
 		dataType: "json",
 		data: JSON.stringify(bodyRaw),
 		success: function (data) {
+			//Save credentials
+			saveCredentials(JSON.parse(data).credentials);
+
 			window.location.replace("/account");
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
