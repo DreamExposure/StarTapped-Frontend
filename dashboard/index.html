@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<!--Meta Stuffs-->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="StarTapped :: A Blogging Platform For All">
+		<meta property="og:title" content="StarTapped"/>
+		<meta property="og:url" content="https://www.dreamexposure.org"/>
+		<meta property="og:description" content="StarTapped :: A Blogging Platform For All"/>
+		<meta property="og:image" content="/img/bg-masthead.jpg">
+
+
+		<!-- ****** faviconit.com favicons ****** -->
+		<!--TODO: Generate and add favicon.
+		<link rel="shortcut icon" href="/img/favicons/favicon.ico">
+		<link rel="icon" sizes="16x16 32x32 64x64" href="/img/favicons/favicon.ico">
+		<link rel="icon" type="image/png" sizes="196x196" href="/img/favicons/favicon-192.png">
+		<link rel="icon" type="image/png" sizes="160x160" href="/img/favicons/favicon-160.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/img/favicons/favicon-96.png">
+		<link rel="icon" type="image/png" sizes="64x64" href="/img/favicons/favicon-64.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/img/favicons/favicon-32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16.png">
+		<link rel="apple-touch-icon" href="/img/favicons/favicon-57.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/img/favicons/favicon-114.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/img/favicons/favicon-72.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/img/favicons/favicon-144.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/img/favicons/favicon-60.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/img/favicons/favicon-120.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/img/favicons/favicon-76.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/img/favicons/favicon-152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/favicon-180.png">
+		<meta name="msapplication-TileColor" content="#FFFFFF">
+		<meta name="msapplication-TileImage" content="/img/favicons/favicon-144.png">
+		<meta name="msapplication-config" content="/img/favicons/browserconfig.xml">
+		-->
+		<!-- ****** faviconit.com favicons ****** -->
+
+		<title>StarTapped</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Custom fonts for this template -->
+		<link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+		<link href="/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+		      rel="stylesheet" type="text/css">
+
+		<!-- Custom styles for this template -->
+		<link href="/css/landing-page.min.css" rel="stylesheet">
+		<link href="/css/snackbar.min.css" rel="stylesheet">
+
+		<!--JS-->
+		<script src="/js/account/logout.js"></script>
+		<script src="/js/account/auth.js"></script>
+		<script src="/js/snackbar.js"></script>
+		<script src="/vendor/cookie/cookie.min.js"></script>
+
+		<!--Externally Hosted-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+		        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	</head>
+
+	<body onload="initOnDashboard()">
+
+		<!-- Navigation -->
+		<nav class="navbar navbar-dark bg-dark static-top">
+			<div class="container">
+				<a class="navbar-brand" href="/">StarTapped</a>
+				<a class="btn btn-primary" href="/search">Search</a>
+				<a class="btn btn-primary" href="/explore">Explore</a>
+				<button class="btn btn-warning" data-toggle="modal" data-target="#modal-sign-out">Sign Out</button>
+			</div>
+		</nav>
+
+		<!--Content-->
+
+		<!-- Footer -->
+		<footer class="footer bg-dark">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+						<ul class="list-inline mb-2">
+							<li class="list-inline-item">
+								<a class="text-link-color underline-solid" href="https://www.dreamexposure.org/contact" target="_blank">Contact</a>
+							</li>
+							<li class="list-inline-item text-light">&sdot;</li>
+							<li class="list-inline-item">
+								<a class="text-link-color underline-solid" href="#">Terms of Service</a>
+							</li>
+							<li class="list-inline-item text-light">&sdot;</li>
+							<li class="list-inline-item">
+								<a class="text-link-color underline-solid" href="https://www.dreamexposure.org/policy/privacy" target="_blank">Privacy Policy</a>
+							</li>
+							<li class="list-inline-item text-light">&sdot;</li>
+							<li class="list-inline-item">
+								<a class="text-link-color underline-solid" href="https://www.dreamexposure.org" target="_blank">DreamExposure</a>
+							</li>
+						</ul>
+						<p class="text-muted small mb-4 mb-lg-0">&copy; DreamExposure Studios 2018. All Rights Reserved.</p>
+					</div>
+					<div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+						<ul class="list-inline mb-0">
+							<li class="list-inline-item mr-3">
+								<a href="https://github.com/DreamExposure" target="_blank">
+									<i class="fab fa-github fa-2x fa-fw"></i>
+								</a>
+							</li>
+							<li class="list-inline-item mr-3">
+								<a href="#">
+									<i class="fab fa-twitter-square fa-2x fa-fw"></i>
+								</a>
+							</li>
+							<li class="list-inline-item">
+								<a href="#">
+									<i class="fab fa-instagram fa-2x fa-fw"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<!--Modals-->
+		<!--Sign out modal-->
+		<div class="modal fade" id="modal-sign-out" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content bg-dark">
+					<div class="modal-header">
+						<h4 class="modal-title text-light">Are you sure you want to sign out?</h4>
+					</div>
+					<div class="modal-body">
+						<form style="text-align: center;" id="sign-in-form" action="javascript:logOut()">
+
+							<input type="submit" class="btn btn-large btn-danger" value="Yes, Sign Out">
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-sm btn-primary icon-close" data-dismiss="modal"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--Snackbar-->
+		<div id="snackbar"></div>
+
+
+
+		<!-- Bootstrap core JavaScript -->
+		<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>
