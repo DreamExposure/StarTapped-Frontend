@@ -37,7 +37,7 @@
 		-->
 		<!-- ****** faviconit.com favicons ****** -->
 
-		<title>Dashboard :: StarTapped</title>
+		<title>Account :: StarTapped</title>
 
 		<!-- Bootstrap core CSS -->
 		<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -49,12 +49,13 @@
 		      rel="stylesheet" type="text/css">
 
 		<!-- Custom styles for this template -->
-		<link href="/css/dashboard-page.min.css" rel="stylesheet">
+		<link href="/css/account-page.min.css" rel="stylesheet">
 		<link href="/css/snackbar.min.css" rel="stylesheet">
 
 		<!--JS-->
 		<script src="/js/account/logout.js"></script>
 		<script src="/js/account/auth.js"></script>
+		<script src="/js/account/account.js"></script>
 		<script src="/js/snackbar.js"></script>
 		<script src="/vendor/cookie/cookie.min.js"></script>
 
@@ -63,21 +64,29 @@
 		        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	</head>
 
-	<body onload="initOnDashboard()">
+	<body onload="initOnDashboard()" class="bg-dark">
 
 		<!-- Navigation -->
-		<nav class="navbar navbar-dark bg-dark static-top">
+		<nav class="navbar navbar-dark bg-dark sticky-top border-bottom">
 			<div class="container">
 				<a class="navbar-brand" href="/">StarTapped</a>
-				<a class="btn btn-light" href="/dashboard">Dashboard</a>
+				<a class="btn btn-primary" href="/dashboard">Dashboard</a>
 				<a class="btn btn-primary" href="/search">Search</a>
 				<a class="btn btn-primary" href="/explore">Explore</a>
-				<a class="btn btn-primary" href="/account">Account</a>
+				<a class="btn btn-light" href="/account">Account</a>
 				<button class="btn btn-warning" data-toggle="modal" data-target="#modal-sign-out">Sign Out</button>
 			</div>
 		</nav>
 
 		<!--Content-->
+		<div>
+			<div class="container text-center">
+				<h2 class="text-light">Account Settings</h2>
+				<br>
+				<button class="btn btn-warning" data-toggle="modal" data-target="#modal-update-password">Update Password</button>
+				<button class="btn btn-warning" data-toggle="modal" data-target="#modal-update-email">Update Email</button>
+			</div>
+		</div>
 
 		<!-- Footer -->
 		<footer class="footer bg-dark">
@@ -136,9 +145,73 @@
 						<h4 class="modal-title text-light">Are you sure you want to sign out?</h4>
 					</div>
 					<div class="modal-body">
-						<form style="text-align: center;" id="sign-in-form" action="javascript:logOut()">
+						<form style="text-align: center;" id="sign-out-form" action="javascript:logOut()">
 
 							<input type="submit" class="btn btn-large btn-danger" value="Yes, Sign Out">
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-sm btn-primary icon-close" data-dismiss="modal"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Update password modal-->
+		<div class="modal fade" id="modal-update-password" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content bg-dark">
+					<div class="modal-header">
+						<h4 class="modal-title text-light">Update Password</h4>
+					</div>
+					<div class="modal-body">
+						<form style="text-align: center;" id="update-password-form" action="javascript:updatePassword()">
+							<label>
+								<input class="rounded" name="old-password" type="password" id="update-password-current" required="required" placeholder="Current Password">
+							</label>
+							<br>
+							<label>
+								<input class="rounded" name="new-password" type="password" id="update-password-new" required="required" placeholder="New Password">
+							</label>
+							<br>
+							<label>
+								<input class="rounded" name="new-password-retype" type="password" id="update-password-new-retype" required="required" placeholder="Retype New Password" onchange="checkPasswordValidity(this)">
+							</label>
+							<br>
+							<div class="text-center">
+								<div class="g-cap" id="update-password-recap"></div>
+							</div>
+							<input type="submit" class="btn btn-large btn-danger" value="Update">
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-sm btn-primary icon-close" data-dismiss="modal"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Update email modal-->
+		<div class="modal fade" id="modal-update-email" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content bg-dark">
+					<div class="modal-header">
+						<h4 class="modal-title text-light">Update Email</h4>
+					</div>
+					<div class="modal-body">
+						<form style="text-align: center;" id="update-email-form" action="javascript:updateEmail()">
+							<label>
+								<input class="rounded" name="email" type="email" id="update-email-email" required="required" placeholder="New Email">
+							</label>
+							<br>
+							<label>
+								<input class="rounded" name="password" type="password" id="update-email-password" required="required" placeholder="Password">
+							</label>
+							<br>
+							<div class="text-center">
+								<div class="g-cap" id="update-email-recap"></div>
+							</div>
+							<input type="submit" class="btn btn-large btn-danger" value="Update">
 						</form>
 					</div>
 					<div class="modal-footer">
@@ -151,9 +224,16 @@
 		<!--Snackbar-->
 		<div id="snackbar"></div>
 
-
+		<script type="text/javascript">
+			var CaptchaCallback = function () {
+				grecaptcha.render('update-password-recap', {'sitekey': '6LfdUYAUAAAAAJwkUcp3WbCVoQIyFAefKmmX7WLv'});
+				grecaptcha.render('update-email-recap', {'sitekey': '6LfdUYAUAAAAAJwkUcp3WbCVoQIyFAefKmmX7WLv'});
+			};
+		</script>
 
 		<!-- Bootstrap core JavaScript -->
 		<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" async
+		        defer></script>
 	</body>
 </html>

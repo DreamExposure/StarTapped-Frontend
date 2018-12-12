@@ -15,7 +15,7 @@ function signIn() {
 		data: JSON.stringify(bodyRaw),
 		success: function (json) {
 			//Save credentials
-			saveCredentials(json.credentials);
+			saveCredentials(json.credentials, document.getElementById("sign-in-remember").checked);
 
 			window.location.replace("/dashboard");
 		},

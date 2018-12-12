@@ -1,0 +1,13 @@
+// Core variables and mixins
+@import "variables.scss";
+@import "mixins.scss";
+// Global CSS
+@import "global.scss";
+// Components
+@import "icons.scss";
+@import "gcap.scss";
+@import "footer.scss";
+
+//Bootstrap that is being overridden
+//noinspection CssUnknownTarget
+@import "./node_modules/bootstrap/scss/bootstrap";

@@ -1,10 +1,10 @@
-function saveCredentials(json) {
+function saveCredentials(json, remember) {
 	//Set defaults...
 	cookie.defaults.secure = true;
 	cookie.defaults.domain = "www.startapped.com";
 
 
-	if (document.getElementById("sign-in-remember").checked) {
+	if (remember) {
 		cookie.set({
 			"auth": "auth",
 			"access": json.access_token,
