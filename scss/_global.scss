@@ -1,8 +1,15 @@
 @import "mixins";
 @import "variables";
 
+html {
+  height: 100%;
+}
 body {
   @include body-font;
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
 }
 
 h1,
