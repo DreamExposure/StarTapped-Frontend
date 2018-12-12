@@ -4,7 +4,7 @@ function signUp() {
 		"username": document.getElementById("sign-up-username").value,
 		"password": document.getElementById("sign-up-password").value,
 		"birthday": document.getElementById("sign-up-birthday").value,
-		"gcap": grecaptcha.getResponse()
+		"gcap": grecaptcha.getResponse(1)
 	};
 
 	$.ajax({
@@ -15,14 +15,14 @@ function signUp() {
 		method: "POST",
 		dataType: "json",
 		data: JSON.stringify(bodyRaw),
-		success: function (data) {
+		success: function (json) {
 			//Save credentials
-			saveCredentials(JSON.parse(data).credentials);
+			saveCredentials(json.credentials);
 
 			window.location.replace("/account/create-blog");
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
-			showSnackbar(jqXHR.responseText);
+			showSnackbar(JSON.parse(jqXHR.responseText).message);
 			grecaptcha.reset();
 		}
 	});

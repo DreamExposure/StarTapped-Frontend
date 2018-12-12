@@ -57,6 +57,7 @@
 		<script src="js/account/sign-in.js"></script>
 		<script src="js/account/auth.js"></script>
 		<script src="js/snackbar.js"></script>
+		<script src="vendor/cookie/cookie.min.js"></script>
 
 		<!--Externally Hosted-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
@@ -271,7 +272,7 @@
 							</label>
 							<br>
 							<div class="text-center">
-								<div class="g-recaptcha" data-sitekey="6LfdUYAUAAAAAJwkUcp3WbCVoQIyFAefKmmX7WLv"></div>
+								<div class="g-cap" id="sign-in-recap"></div>
 							</div>
 							<input type="submit" class="btn btn-large btn-primary" value="Sign In" id="sign-in-submit">
 						</form>
@@ -298,7 +299,8 @@
 							</label>
 							<br>
 							<label>
-								<input class="rounded" name="username" type="text" id="sign-up-username" required="required" placeholder="Username" minlength="6" maxlength="32">
+								<input class="rounded" name="username" type="text" id="sign-up-username"
+								       required="required" placeholder="Username" minlength="5" maxlength="32">
 							</label>
 							<br>
 							<label class="text-light">Birthday
@@ -314,7 +316,7 @@
 							</label>
 							<br>
 							<div class="text-center">
-								<div class="g-recaptcha" data-sitekey="6LfdUYAUAAAAAJwkUcp3WbCVoQIyFAefKmmX7WLv"></div>
+								<div class="g-cap" id="sign-up-recap"></div>
 							</div>
 							<input type="submit" class="btn btn-large btn-primary" value="Sign Up" id="sign-up-submit">
 						</form>
@@ -329,11 +331,18 @@
 		<!--Snackbar-->
 		<div id="snackbar"></div>
 
+		<script type="text/javascript">
+			var CaptchaCallback = function () {
+				grecaptcha.render('sign-in-recap', {'sitekey': '6LfdUYAUAAAAAJwkUcp3WbCVoQIyFAefKmmX7WLv'});
+				grecaptcha.render('sign-up-recap', {'sitekey': '6LfdUYAUAAAAAJwkUcp3WbCVoQIyFAefKmmX7WLv'});
+			};
+		</script>
+
+
 		<!-- Bootstrap core JavaScript -->
 		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script src="vendor/cookie/cookie.min.js"></script>
-		<script src='https://www.google.com/recaptcha/api.js'></script>
-
+		<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" async
+		        defer></script>
 	</body>
 
 </html>

@@ -2,7 +2,7 @@ function signIn() {
 	var bodyRaw = {
 		"email": document.getElementById("sign-in-email").value,
 		"password": document.getElementById("sign-in-password").value,
-		"gcap": grecaptcha.getResponse()
+		"gcap": grecaptcha.getResponse(0)
 	};
 
 	$.ajax({
@@ -13,14 +13,14 @@ function signIn() {
 		method: "POST",
 		dataType: "json",
 		data: JSON.stringify(bodyRaw),
-		success: function (data) {
+		success: function (json) {
 			//Save credentials
-			saveCredentials(JSON.parse(data).credentials);
+			saveCredentials(json.credentials);
 
-			window.location.replace("/account");
+			window.location.replace("/dashboard");
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
-			showSnackbar(jqXHR.responseText);
+			showSnackbar(JSON.parse(jqXHR.responseText).message);
 
 			grecaptcha.reset();
 		}
