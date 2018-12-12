@@ -64,7 +64,7 @@
 		        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	</head>
 
-	<body onload="initOnDashboard()" class="bg-dark">
+	<body onload="initOnLoad()" class="bg-dark">
 
 		<!-- Navigation -->
 		<nav class="navbar navbar-dark bg-dark sticky-top border-bottom">
@@ -85,6 +85,10 @@
 				<br>
 				<button class="btn btn-warning" data-toggle="modal" data-target="#modal-update-password">Update Password</button>
 				<button class="btn btn-warning" data-toggle="modal" data-target="#modal-update-email">Update Email</button>
+				<br>
+				<label class="text-light">Use Safe Search
+					<input type="checkbox" class="rounded" id="update-safe-search" onclick="updateSafeSearch()">
+				</label>
 			</div>
 		</div>
 

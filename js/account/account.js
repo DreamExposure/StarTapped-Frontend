@@ -61,6 +61,51 @@ function updatePassword() {
 	});
 }
 
+function updateSafeSearch() {
+	var bodyRaw = {
+		"safe_search": document.getElementById("update-safe-search").checked
+	};
+
+	$.ajax({
+		url: "https://api.startapped.com/v1/account/update",
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization_Access": getCredentials().access,
+			"Authorization_Refresh": getCredentials().refresh
+		},
+		method: "POST",
+		dataType: "json",
+		data: JSON.stringify(bodyRaw),
+		success: function (json) {
+			showSnackbar(json.message);
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			showSnackbar(JSON.parse(jqXHR.responseText).message);
+		}
+	});
+}
+
+function initOnLoad() {
+	initOnDashboard();
+
+	$.ajax({
+		url: "https://api.startapped.com/v1/account/get",
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization_Access": getCredentials().access,
+			"Authorization_Refresh": getCredentials().refresh
+		},
+		method: "POST",
+		dataType: "json",
+		success: function (json) {
+			document.getElementById("update-safe-search").checked = json.account.safe_search;
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			showSnackbar(JSON.parse(jqXHR.responseText).message)
+		}
+	});
+}
+
 function checkPasswordValidity(input) {
 	if (input.value !== document.getElementById("update-password-new").value) {
 		input.setCustomValidity("Passwords must match!");
