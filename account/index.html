@@ -56,6 +56,7 @@
 		<script src="/js/account/logout.js"></script>
 		<script src="/js/account/auth.js"></script>
 		<script src="/js/account/account.js"></script>
+		<script src="/js/blog/blog.js"></script>
 		<script src="/js/snackbar.js"></script>
 		<script src="/vendor/cookie/cookie.min.js"></script>
 
@@ -78,7 +79,7 @@
 			</div>
 		</nav>
 
-		<!--Content-->
+		<!--Account Settings-->
 		<div>
 			<div class="container text-center">
 				<h2 class="text-light">Account Settings</h2>
@@ -89,6 +90,21 @@
 				<label class="text-light">Use Safe Search
 					<input type="checkbox" class="rounded" id="update-safe-search" onclick="updateSafeSearch()">
 				</label>
+			</div>
+		</div>
+
+		<!--Blogs-->
+		<div>
+			<div class="container text-center">
+				<h2 class="text-light">Your Blogs</h2>
+				<div class="row">
+					<div id="blog-container" class="text-center">
+
+					</div>
+					<div class="text-center">
+						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-create-blog">Create New Blog!</button>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -224,6 +240,32 @@
 				</div>
 			</div>
 		</div>
+		<!--Create Blog Modal-->
+		<div class="modal fade" id="modal-create-blog" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content bg-dark">
+					<div class="modal-header">
+						<h4 class="modal-title text-light">Create New Blog</h4>
+					</div>
+					<div class="modal-body">
+						<form style="text-align: center;" id="create-blog-form" action="javascript:createNewBlog(2)">
+							<label class="text-center text-light">Blog URL (Ex. my-cool-blog.startapped.com)
+								<input class="rounded" name="url" type="text" id="blog-create-url" required="required" placeholder="my-cool-blog">
+							</label>
+							<br>
+							<div class="text-center">
+								<div class="g-cap" id="create-blog-recap"></div>
+							</div>
+							<input type="submit" class="btn btn-large btn-danger" value="Create Blog!">
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-sm btn-primary icon-close" data-dismiss="modal"></button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<!--Snackbar-->
 		<div id="snackbar"></div>
@@ -232,6 +274,7 @@
 			var CaptchaCallback = function () {
 				grecaptcha.render('update-password-recap', {'sitekey': '6LfdUYAUAAAAAJwkUcp3WbCVoQIyFAefKmmX7WLv'});
 				grecaptcha.render('update-email-recap', {'sitekey': '6LfdUYAUAAAAAJwkUcp3WbCVoQIyFAefKmmX7WLv'});
+				grecaptcha.render('create-blog-recap', {'sitekey': '6LfdUYAUAAAAAJwkUcp3WbCVoQIyFAefKmmX7WLv'});
 			};
 		</script>
 

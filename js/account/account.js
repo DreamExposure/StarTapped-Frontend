@@ -104,6 +104,8 @@ function initOnLoad() {
 			showSnackbar(JSON.parse(jqXHR.responseText).message)
 		}
 	});
+
+	getAllBlogsSelf();
 }
 
 function checkPasswordValidity(input) {
