@@ -1,0 +1,71 @@
+.blog-main-container {
+  padding-bottom: inherit;
+}
+
+.blog-container {
+  position: relative;
+  width: 340px;
+  height: 500px;
+ margin: 1rem;
+}
+
+.blog-header-img {
+  position: relative;
+  width: 100%;
+  height: 20%;
+}
+
+.blog-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 2%;
+}
+
+.blog-edit-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 2%;
+}
+
+.blog-profile-img {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.blog-nsfw-badge {
+  position: absolute;
+
+  top: 20%;
+  left: 0;
+  margin: 1%;
+}
+
+.blog-18-only-badge {
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  margin: 1%;
+}
+
+.blog-title {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.blog-desc {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+  line-height: 1rem;
+}
