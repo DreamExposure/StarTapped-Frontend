@@ -134,6 +134,9 @@ h6 {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
+  width: inherit;
+  padding-left: .25rem;
+  padding-right: .25rem;
 }
 
 .blog-desc {
@@ -144,6 +147,9 @@ h6 {
   transform: translate(-50%);
   text-align: center;
   line-height: 1rem;
+  width: inherit;
+  padding-left: .5rem;
+  padding-right: .5rem;
 }
 
 footer.footer {
