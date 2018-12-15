@@ -155,6 +155,19 @@ function getAllBlogsSelf() {
 				form.appendChild(document.createElement("br"));
 
 				//Icon image
+				var iconLabel = document.createElement("label");
+				iconLabel.className = "text-light";
+				iconLabel.innerHTML = "Icon Image";
+				iconLabel.appendChild(document.createElement("br"));
+				form.appendChild(iconLabel);
+				var iconFile = document.createElement("input");
+				iconFile.className = "rounded";
+				iconFile.name = "edit-icon-image";
+				iconFile.type = "file";
+				iconFile.id = "edit-icon-image-" + blog.id;
+				iconFile.onchange = function (ignore) { encodeImageFileAsBase64(this) };
+				iconLabel.appendChild(iconFile);
+				form.appendChild(document.createElement("br"));
 
 				//Background color
 				var colorLabel = document.createElement("label");
@@ -172,6 +185,19 @@ function getAllBlogsSelf() {
 				form.appendChild(document.createElement("br"));
 
 				//Background image
+				var backgroundImageLabel = document.createElement("label");
+				backgroundImageLabel.className = "text-light";
+				backgroundImageLabel.innerHTML = "Background Image";
+				backgroundImageLabel.appendChild(document.createElement("br"));
+				form.appendChild(backgroundImageLabel);
+				var backgroundFile = document.createElement("input");
+				backgroundFile.className = "rounded";
+				backgroundFile.name = "edit-background-image";
+				backgroundFile.type = "file";
+				backgroundFile.id = "edit-background-image-" + blog.id;
+				backgroundFile.onchange = function (ignore) {encodeImageFileAsBase64(this)};
+				backgroundImageLabel.appendChild(backgroundFile);
+				form.appendChild(document.createElement("br"));
 
 				//Is NSFW
 				var nsfwLabel = document.createElement("label");
@@ -249,7 +275,7 @@ function createNewBlog(recapIndex) {
 		headers: {
 			"Content-Type": "application/json",
 			"Authorization_Access": getCredentials().access,
-			"Authorization_Refresh": getCredentials().refresh
+			"Authorization_Refresh": getCredentials().refresh,
 		},
 		method: "POST",
 		dataType: "json",
@@ -273,6 +299,7 @@ function createNewBlog(recapIndex) {
 function updateBlog(editId) {
 	var blogId = editId.split(".")[2];
 	//TODO: Support show age, upload/change icon/background images.
+
 	var bodyRaw = {
 		"id": blogId,
 		"name": document.getElementById("edit-title-" + blogId).value,
@@ -281,6 +308,13 @@ function updateBlog(editId) {
 		"allow_under_18": document.getElementById("edit-under-18-" + blogId).checked,
 		"background_color": document.getElementById("edit-background-color-" + blogId).value
 	};
+
+	if (hasEncodedResults("edit-icon-image-" + blogId)) {
+		bodyRaw.icon_image = getEncodedResults("edit-icon-image-" + blogId);
+	}
+	if (hasEncodedResults("edit-background-image-" + blogId)) {
+		bodyRaw.background_image = getEncodedResults("edit-background-image-" + blogId);
+	}
 
 	$.ajax({
 		url: "https://api.startapped.com/v1/blog/update",
@@ -297,6 +331,10 @@ function updateBlog(editId) {
 			$('#modal-' + blogId).modal('hide');
 
 			showSnackbar(json.message);
+
+			//Clear the encoded images...
+			removeEncodedResults("edit-icon-image-" + blogId);
+			removeEncodedResults("edit-background-image-" + blogId);
 
 			//Refresh the blog view
 			getAllBlogsSelf();
