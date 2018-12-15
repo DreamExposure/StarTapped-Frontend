@@ -53,7 +53,6 @@ function getAllBlogsSelf() {
 				editButton.setAttribute("data-target", "#modal-" + blog.id);
 				editButton.type = "button";
 				container.appendChild(editButton);
-				//TODO: Add button functionality to open modal
 
 				//Icon image
 				var icon = document.createElement("img");
@@ -298,7 +297,7 @@ function createNewBlog(recapIndex) {
 
 function updateBlog(editId) {
 	var blogId = editId.split(".")[2];
-	//TODO: Support show age, upload/change icon/background images.
+	//TODO: Support show age, and url changing
 
 	var bodyRaw = {
 		"id": blogId,
