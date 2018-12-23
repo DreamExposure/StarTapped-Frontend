@@ -19,7 +19,7 @@ function signUp() {
 			//Save credentials
 			saveCredentials(json.credentials);
 
-			window.location.replace("/account/create-blog");
+			window.location.replace("/account");
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
 			showSnackbar(JSON.parse(jqXHR.responseText).message);

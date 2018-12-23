@@ -17,7 +17,7 @@ function signIn() {
 			//Save credentials
 			saveCredentials(json.credentials, document.getElementById("sign-in-remember").checked);
 
-			window.location.replace("/dashboard");
+			window.location.replace("/hub");
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
 			showSnackbar(JSON.parse(jqXHR.responseText).message);

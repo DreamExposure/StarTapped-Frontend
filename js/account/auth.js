@@ -58,19 +58,19 @@ function initOnLandingPage() {
 						saveCredentials(json.credentials, true);
 					}
 
-					window.location.replace("/dashboard");
+					window.location.replace("/hub");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					showSnackbar(JSON.parse(jqXHR.responseText).message);
 				}
 			});
 		} else {
-			window.location.replace("/dashboard");
+			window.location.replace("/hub");
 		}
 	}
 }
 
-function initOnDashboard() {
+function initOnHub() {
 	if (cookie.get("access") == null) {
 		//User is logged out
 		window.location.replace("/");
