@@ -75,6 +75,15 @@ function getAllBlogsSelf() {
 					under.innerHTML = "18+ Only";
 					container.appendChild(under);
 				}
+				//Age badge
+				if (blog.type === "PERSONAL") {
+					if (blog.display_age) {
+						var age = document.createElement("span");
+						age.className = "blog-age-badge badge badge-danger";
+						showAgeSelf(age);
+						container.appendChild(age);
+					}
+				}
 
 				//Blog title
 				var title = document.createElement("h3");
@@ -228,6 +237,23 @@ function getAllBlogsSelf() {
 				under18Label.appendChild(under18Box);
 				form.appendChild(document.createElement("br"));
 
+				//Display age
+				if (blog.type === "PERSONAL") {
+					var showAgeLabel = document.createElement("label");
+					showAgeLabel.className = "text-light";
+					showAgeLabel.innerHTML = "Display your age";
+					showAgeLabel.appendChild(document.createElement("br"));
+					form.appendChild(showAgeLabel);
+					var showAgeBox = document.createElement("input");
+					showAgeBox.className = "rounded";
+					showAgeBox.name = "show_age";
+					showAgeBox.type = "checkbox";
+					showAgeBox.checked = blog.display_age;
+					showAgeBox.id = "edit-display-age-" + blog.id;
+					showAgeLabel.appendChild(showAgeBox);
+					form.appendChild(document.createElement("br"));
+				}
+
 				//Submit button
 				var submit = document.createElement("button");
 				submit.className = "btn btn-primary";
@@ -314,6 +340,9 @@ function updateBlog(editId) {
 	if (hasEncodedResults("edit-background-image-" + blogId)) {
 		bodyRaw.background_image = getEncodedResults("edit-background-image-" + blogId);
 	}
+	if (document.getElementById("edit-display-age-" + blogId) !== null) {
+		bodyRaw.display_age = document.getElementById("edit-display-age-" + blogId).checked;
+	}
 
 	$.ajax({
 		url: "https://api.startapped.com/v1/blog/update",
@@ -337,6 +366,27 @@ function updateBlog(editId) {
 
 			//Refresh the blog view
 			getAllBlogsSelf();
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			showSnackbar(JSON.parse(jqXHR.responseText).message);
+		}
+	})
+}
+
+function showAgeSelf(ageElement) {
+	$.ajax({
+		url: "https://api.startapped.com/v1/account/get",
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization_Access": getCredentials().access,
+			"Authorization_Refresh": getCredentials().refresh
+		},
+		method: "POST",
+		dataType: "json",
+		success: function (json) {
+			var birth = json.account.birthday;
+
+			ageElement.innerHTML = getAge(birth).toString();
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
 			showSnackbar(JSON.parse(jqXHR.responseText).message);
