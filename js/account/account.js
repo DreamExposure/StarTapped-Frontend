@@ -86,7 +86,7 @@ function updateSafeSearch() {
 }
 
 function initOnLoad() {
-	initOnDashboard();
+	initOnHub();
 
 	$.ajax({
 		url: "https://api.startapped.com/v1/account/get",

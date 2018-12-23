@@ -43,6 +43,21 @@ h6 {
   text-decoration: line-through dotted;
 }
 
+.icon-custom-small {
+  height: 1rem;
+  width: 1rem;
+}
+
+.icon-custom-medium {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.icon-custom-large {
+  height: 2rem;
+  width: 2rem;
+}
+
 .features-icons {
   padding-top: 7rem;
   padding-bottom: 7rem;
@@ -100,7 +115,7 @@ h6 {
   position: absolute;
   top: 0;
   right: 0;
-  margin: 2%;
+  width: 3rem;
 }
 
 .blog-profile-img {

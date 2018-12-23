@@ -46,12 +46,12 @@ function getAllBlogsSelf() {
 				container.appendChild(viewButton);
 
 				//Create edit button
-				var editButton = document.createElement("button");
-				editButton.className = "btn btn-warning blog-edit-button";
-				editButton.innerHTML = "Edit";
+				var editButton = document.createElement("img");
+				editButton.className = "blog-edit-button";
 				editButton.setAttribute("data-toggle", "modal");
 				editButton.setAttribute("data-target", "#modal-" + blog.id);
-				editButton.type = "button";
+				editButton.alt = "Edit";
+				editButton.src = "/img/icon/edit_256px.png";
 				container.appendChild(editButton);
 
 				//Icon image
@@ -272,10 +272,15 @@ function getAllBlogsSelf() {
 				modalCon.appendChild(modalFooter);
 
 				var closeButton = document.createElement("button");
-				closeButton.className = "btn btn-primary btn-sm icon-close";
+				closeButton.className = "btn btn-primary btn-sm";
 				closeButton.type = "button";
 				closeButton.setAttribute("data-dismiss", "modal");
 				modalFooter.appendChild(closeButton);
+				var closeIcon = document.createElement("img");
+				closeIcon.className = "icon-custom-small";
+				closeIcon.src = "/img/icon/close_256px.png";
+				closeIcon.alt = "Close";
+				closeButton.appendChild(closeIcon);
 				//Oh my god finally done!!!
 			}
 
