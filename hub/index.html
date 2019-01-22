@@ -50,8 +50,13 @@
 		<link href="/css/snackbar.min.css" rel="stylesheet">
 
 		<!--JS-->
+		<script src="/js/objects/Account.js"></script>
+		<script src="/js/objects/Blog.js"></script>
+
 		<script src="/js/account/logout.js"></script>
 		<script src="/js/account/auth.js"></script>
+		<script src="/js/hub/HubRunner.js"></script>
+		<script src="/js/utils/PostMaker.js"></script>
 		<script src="/js/utils/snackbar.js"></script>
 		<script src="/vendor/cookie/cookie.min.js"></script>
 
@@ -60,7 +65,7 @@
 		        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	</head>
 
-	<body onload="initOnHub()">
+	<body onload="doLoadHub()">
 
 		<!-- Navigation -->
 		<nav class="navbar navbar-dark bg-dark static-top">
