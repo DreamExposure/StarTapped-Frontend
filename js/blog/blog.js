@@ -198,7 +198,7 @@ function getAllBlogsSelf() {
 				backgroundImageLabel.innerHTML = "Background Image";
 				backgroundImageLabel.appendChild(document.createElement("br"));
 				form.appendChild(backgroundImageLabel);
-				var backgroundFile = document.createElement("input");
+				let backgroundFile = document.createElement("input");
 				backgroundFile.className = "rounded";
 				backgroundFile.name = "edit-background-image";
 				backgroundFile.type = "file";
@@ -213,7 +213,7 @@ function getAllBlogsSelf() {
 				nsfwLabel.innerHTML = "Contains NSFW Content";
 				nsfwLabel.appendChild(document.createElement("br"));
 				form.appendChild(nsfwLabel);
-				var nsfwBox = document.createElement("input");
+				let nsfwBox = document.createElement("input");
 				nsfwBox.className = "rounded";
 				nsfwBox.name = "nsfw";
 				nsfwBox.type = "checkbox";
@@ -228,7 +228,7 @@ function getAllBlogsSelf() {
 				under18Label.innerHTML = "Allow Minors To View Blog";
 				under18Label.appendChild(document.createElement("br"));
 				form.appendChild(under18Label);
-				var under18Box = document.createElement("input");
+				let under18Box = document.createElement("input");
 				under18Box.className = "rounded";
 				under18Box.name = "under_18";
 				under18Box.type = "checkbox";
@@ -244,7 +244,7 @@ function getAllBlogsSelf() {
 					showAgeLabel.innerHTML = "Display your age";
 					showAgeLabel.appendChild(document.createElement("br"));
 					form.appendChild(showAgeLabel);
-					var showAgeBox = document.createElement("input");
+					let showAgeBox = document.createElement("input");
 					showAgeBox.className = "rounded";
 					showAgeBox.name = "show_age";
 					showAgeBox.type = "checkbox";

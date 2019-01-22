@@ -13,12 +13,46 @@ function showPosts(json) {
     if (json.count <= 0) {
         keepChecking = false;
     } else {
-        //TODO: Sort latest to earliest
+        let posts = [];
+        //Turn json array to post array...
+        for (let i = 0; i < json.count; i++) {
+            posts.push(new Post().fromJson(json.posts[i]));
+        }
 
-        //TODO: loop through only posts within the start/stop times...
-        //TODO: Add posts to the hub view, at the bottom...
+        //Sort latest to earliest (I hope)
+        posts.sort(function (a, b) {
+            return new Date(a.timestamp) - new Date(b.timestamp);
+        });
+
+        let rootLayout = document.getElementById("post-container");
+
+        //loop through only posts within the start/stop times...
+        for (let i = 0; i < posts.length; i++) {
+            let p = posts[i];
+
+            if (p.timestamp >= timeIndex.getStart().getMilliseconds() && p.timestamp <= timeIndex.getStop().getMilliseconds()) {
+                //Add posts to the hub view, at the bottom...
+                if (p.parent !== "Unassigned") {
+                    rootLayout.appendChild(generatePostTree(p, posts));
+                } else {
+                    let v = null;
+                    if (p.postType === "TEXT") {
+                        v = generateTextPost(p, null, true, true);
+                    } else if (p.postType === "IMAGE") {
+                        v = generateImagePost(p, null, true, true);
+                    } else if (p.postType === "AUDIO") {
+                        v = generateAudioPost(p, null, true, true);
+                    } else if (p.postType === "VIDEO") {
+                        v = generateVideoPost(p, null, true, true);
+                    }
+                    if (v != null) {
+                        rootLayout.appendChild(v);
+                    }
+                }
+            }
+        }
     }
-    timeIndex.forwardOneMonth();
+    timeIndex.backwardOneMonth();
     isGenerating = false;
 }
 
