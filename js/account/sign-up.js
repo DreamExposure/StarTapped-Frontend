@@ -1,5 +1,5 @@
 function signUp() {
-	var bodyRaw = {
+	let bodyRaw = {
 		"email": document.getElementById("sign-up-email").value,
 		"username": document.getElementById("sign-up-username").value,
 		"password": document.getElementById("sign-up-password").value,

@@ -2,18 +2,18 @@ var encodedFiles = new Map();
 
 function encodeImageFileAsBase64(element) {
 
-	var filesSelected = element.files;
+	let filesSelected = element.files;
 	if (filesSelected.length > 0) {
-		var fileToLoad = filesSelected[0];
+		let fileToLoad = filesSelected[0];
 
 		if (validateFileSize(element)) {
 
-			var fileReader = new FileReader();
+			let fileReader = new FileReader();
 
 			fileReader.onload = function (fileLoadedEvent) {
-				var srcData = fileLoadedEvent.target.result; // <--- data: base64
+				let srcData = fileLoadedEvent.target.result; // <--- data: base64
 
-				var result = {
+				let result = {
 					type: srcData.split(",")[0].split(":")[1].split(";")[0],
 					encoded: srcData.split(",")[1]
 				};
@@ -43,7 +43,7 @@ function hasEncodedResults(id) {
 }
 
 function validateFileSize(file) {
-	var FileSize = file.files[0].size / 1024 / 1024;
+	let FileSize = file.files[0].size / 1024 / 1024;
 	if (FileSize > 10) {
 		showSnackbar("File is too big! (Max 10 MB)");
 		$(file).val('');

@@ -1,5 +1,5 @@
 function signIn() {
-	var bodyRaw = {
+	let bodyRaw = {
 		"email": document.getElementById("sign-in-email").value,
 		"password": document.getElementById("sign-in-password").value,
 		"gcap": grecaptcha.getResponse(0)

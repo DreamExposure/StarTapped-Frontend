@@ -39,6 +39,8 @@ function removeCredentials() {
 }
 
 function initOnLandingPage() {
+	//TODO: Show alert if cookies are blocked!!!
+
 	if (cookie.get("access") != null) {
 		//User is logged in...
 		if (parseInt(getCredentials().expire) < Date().now) {

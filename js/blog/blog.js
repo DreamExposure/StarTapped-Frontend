@@ -1,5 +1,5 @@
 function getAllBlogsSelf() {
-	var getBlogsBodyRaw = {
+	let getBlogsBodyRaw = {
 		"all": true
 	};
 
@@ -14,39 +14,39 @@ function getAllBlogsSelf() {
 		dataType: "json",
 		data: JSON.stringify(getBlogsBodyRaw),
 		success: function (json) {
-			var mainContainer = document.getElementById("blog-container");
+			let mainContainer = document.getElementById("blog-container");
 			//First make sure to clear the container
 			while (mainContainer.firstChild) {
 				mainContainer.removeChild(mainContainer.firstChild);
 			}
 
 			//Actually create the HTML for all the blogs and shit.
-			for (var i = 0; i < json.count; i++) {
-				var blog = json.blogs[i];
+			for (let i = 0; i < json.count; i++) {
+				let blog = new Blog().fromJson(json.blogs[i]);
 
 				//Create container....
-				var container = document.createElement("div");
+				let container = document.createElement("div");
 				container.className = "column blog-container rounded";
 				container.id = "blog-" + blog.id;
-				container.style.backgroundColor = blog.background_color;
+				container.style.backgroundColor = blog.backgroundColor;
 				mainContainer.appendChild(container);
 
 				//Header image
-				var header = document.createElement("img");
+				let header = document.createElement("img");
 				header.className = "blog-header-img rounded-top";
-				header.src = blog.background_url;
+				header.src = blog.backgroundUrl;
 				container.appendChild(header);
 
 				//Create view link
-				var viewButton = document.createElement("a");
+				let viewButton = document.createElement("a");
 				viewButton.className = "text-link-color underline-solid blog-link";
-				viewButton.href = blog.complete_url;
+				viewButton.href = blog.completeUrl;
 				viewButton.target = "_blank";
-				viewButton.innerHTML = blog.base_url;
+				viewButton.innerHTML = blog.baseUrl;
 				container.appendChild(viewButton);
 
 				//Create edit button
-				var editButton = document.createElement("img");
+				let editButton = document.createElement("img");
 				editButton.className = "blog-edit-button";
 				editButton.setAttribute("data-toggle", "modal");
 				editButton.setAttribute("data-target", "#modal-" + blog.id);
@@ -55,30 +55,30 @@ function getAllBlogsSelf() {
 				container.appendChild(editButton);
 
 				//Icon image
-				var icon = document.createElement("img");
+				let icon = document.createElement("img");
 				icon.className = "blog-profile-img rounded";
-				icon.src = blog.icon_url;
+				icon.src = blog.iconUrl;
 				container.appendChild(icon);
 
 				//NSFW badge
 				if (blog.nsfw) {
-					var nsfw = document.createElement("span");
+					let nsfw = document.createElement("span");
 					nsfw.className = "blog-nsfw-badge badge badge-danger";
 					nsfw.innerHTML = "NSFW";
 					container.appendChild(nsfw);
 				}
 
 				//18+ only badge
-				if (!blog.allow_under_18) {
-					var under = document.createElement("span");
+				if (!blog.allowUnder18) {
+					let under = document.createElement("span");
 					under.className = "blog-18-only-badge badge badge-danger";
 					under.innerHTML = "18+ Only";
 					container.appendChild(under);
 				}
 				//Age badge
-				if (blog.type === "PERSONAL") {
-					if (blog.display_age) {
-						var age = document.createElement("span");
+				if (blog.blogType === "PERSONAL") {
+					if (blog.displayAge) {
+						let age = document.createElement("span");
 						age.className = "blog-age-badge badge badge-danger";
 						showAgeSelf(age);
 						container.appendChild(age);
@@ -86,59 +86,59 @@ function getAllBlogsSelf() {
 				}
 
 				//Blog title
-				var title = document.createElement("h3");
+				let title = document.createElement("h3");
 				title.className = "blog-title text-primary font-weight-bold";
 				title.innerHTML = blog.name;
 				container.appendChild(title);
 
 				//Blog Description
-				var desc = document.createElement("p");
+				let desc = document.createElement("p");
 				desc.className = "blog-desc text-dark";
 				desc.innerHTML = blog.description;
 				container.appendChild(desc);
 
 				//Create modal for editing
 				//Create modal container
-				var modalContainer = document.createElement("div");
+				let modalContainer = document.createElement("div");
 				modalContainer.className = "modal fade";
 				modalContainer.id = "modal-" + blog.id;
 				modalContainer.role = "dialog";
 				container.appendChild(modalContainer);
 
 				//Create modal-dialog
-				var modalDia = document.createElement("div");
+				let modalDia = document.createElement("div");
 				modalDia.className = "modal-dialog";
 				modalContainer.appendChild(modalDia);
 
 				//Create Modal Content
-				var modalCon = document.createElement("div");
+				let modalCon = document.createElement("div");
 				modalCon.className = "modal-content bg-dark";
 				modalDia.appendChild(modalCon);
 
 				//Create modal header and title
-				var modalHeader = document.createElement("div");
+				let modalHeader = document.createElement("div");
 				modalHeader.className = "modal-header";
 				modalCon.appendChild(modalHeader);
-				var modalTitle = document.createElement("h4");
+				let modalTitle = document.createElement("h4");
 				modalTitle.className = "modal-title text-light";
-				modalTitle.innerHTML = "Editing " + blog.base_url;
+				modalTitle.innerHTML = "Editing " + blog.baseUrl;
 				modalHeader.appendChild(modalTitle);
 
 				//Create Modal Body
-				var modalBody = document.createElement("div");
+				let modalBody = document.createElement("div");
 				modalBody.className = "modal-body";
 				modalCon.appendChild(modalBody);
 
-				var form = document.createElement("form");
+				let form = document.createElement("form");
 				modalBody.appendChild(form);
 
 				//Blog title
-				var titleLabel = document.createElement("label");
+				let titleLabel = document.createElement("label");
 				titleLabel.className = "text-light";
 				titleLabel.innerHTML = "Title";
 				titleLabel.appendChild(document.createElement("br"));
 				form.appendChild(titleLabel);
-				var titleEdit = document.createElement("input");
+				let titleEdit = document.createElement("input");
 				titleEdit.className = "rounded";
 				titleEdit.name = "title";
 				titleEdit.type = "text";
@@ -148,12 +148,12 @@ function getAllBlogsSelf() {
 				form.appendChild(document.createElement("br"));
 
 				//Blog Description
-				var descriptionLabel = document.createElement("label");
+				let descriptionLabel = document.createElement("label");
 				descriptionLabel.className = "text-light";
 				descriptionLabel.innerHTML = "Description";
 				descriptionLabel.appendChild(document.createElement("br"));
 				form.appendChild(descriptionLabel);
-				var description = document.createElement("input");
+				let description = document.createElement("input");
 				description.className = "rounded";
 				description.name = "edit-description";
 				description.type = "text";
@@ -163,12 +163,12 @@ function getAllBlogsSelf() {
 				form.appendChild(document.createElement("br"));
 
 				//Icon image
-				var iconLabel = document.createElement("label");
+				let iconLabel = document.createElement("label");
 				iconLabel.className = "text-light";
 				iconLabel.innerHTML = "Icon Image";
 				iconLabel.appendChild(document.createElement("br"));
 				form.appendChild(iconLabel);
-				var iconFile = document.createElement("input");
+				let iconFile = document.createElement("input");
 				iconFile.className = "rounded";
 				iconFile.name = "edit-icon-image";
 				iconFile.type = "file";
@@ -178,22 +178,22 @@ function getAllBlogsSelf() {
 				form.appendChild(document.createElement("br"));
 
 				//Background color
-				var colorLabel = document.createElement("label");
+				let colorLabel = document.createElement("label");
 				colorLabel.className = "text-light";
 				colorLabel.innerHTML = "Background Color";
 				colorLabel.appendChild(document.createElement("br"));
 				form.appendChild(colorLabel);
-				var color = document.createElement("input");
+				let color = document.createElement("input");
 				color.className = "rounded";
 				color.name = "background-color";
 				color.type = "color";
-				color.value = blog.background_color;
+				color.value = blog.backgroundColor;
 				color.id = "edit-background-color-" + blog.id;
 				colorLabel.appendChild(color);
 				form.appendChild(document.createElement("br"));
 
 				//Background image
-				var backgroundImageLabel = document.createElement("label");
+				let backgroundImageLabel = document.createElement("label");
 				backgroundImageLabel.className = "text-light";
 				backgroundImageLabel.innerHTML = "Background Image";
 				backgroundImageLabel.appendChild(document.createElement("br"));
@@ -208,7 +208,7 @@ function getAllBlogsSelf() {
 				form.appendChild(document.createElement("br"));
 
 				//Is NSFW
-				var nsfwLabel = document.createElement("label");
+				let nsfwLabel = document.createElement("label");
 				nsfwLabel.className = "text-light";
 				nsfwLabel.innerHTML = "Contains NSFW Content";
 				nsfwLabel.appendChild(document.createElement("br"));
@@ -223,7 +223,7 @@ function getAllBlogsSelf() {
 				form.appendChild(document.createElement("br"));
 
 				//Allow under 18
-				var under18Label = document.createElement("label");
+				let under18Label = document.createElement("label");
 				under18Label.className = "text-light";
 				under18Label.innerHTML = "Allow Minors To View Blog";
 				under18Label.appendChild(document.createElement("br"));
@@ -232,14 +232,14 @@ function getAllBlogsSelf() {
 				under18Box.className = "rounded";
 				under18Box.name = "under_18";
 				under18Box.type = "checkbox";
-				under18Box.checked = blog.allow_under_18;
+				under18Box.checked = blog.allowUnder18;
 				under18Box.id = "edit-under-18-" + blog.id;
 				under18Label.appendChild(under18Box);
 				form.appendChild(document.createElement("br"));
 
 				//Display age
-				if (blog.type === "PERSONAL") {
-					var showAgeLabel = document.createElement("label");
+				if (blog.blogType === "PERSONAL") {
+					let showAgeLabel = document.createElement("label");
 					showAgeLabel.className = "text-light";
 					showAgeLabel.innerHTML = "Display your age";
 					showAgeLabel.appendChild(document.createElement("br"));
@@ -248,14 +248,14 @@ function getAllBlogsSelf() {
 					showAgeBox.className = "rounded";
 					showAgeBox.name = "show_age";
 					showAgeBox.type = "checkbox";
-					showAgeBox.checked = blog.display_age;
+					showAgeBox.checked = blog.displayAge;
 					showAgeBox.id = "edit-display-age-" + blog.id;
 					showAgeLabel.appendChild(showAgeBox);
 					form.appendChild(document.createElement("br"));
 				}
 
 				//Submit button
-				var submit = document.createElement("button");
+				let submit = document.createElement("button");
 				submit.className = "btn btn-primary";
 				submit.type = "button";
 				submit.id = "edit.submit." + blog.id;
@@ -267,16 +267,16 @@ function getAllBlogsSelf() {
 				form.appendChild(submit);
 
 				//Create modal footer
-				var modalFooter = document.createElement("div");
+				let modalFooter = document.createElement("div");
 				modalFooter.className = "modal-footer";
 				modalCon.appendChild(modalFooter);
 
-				var closeButton = document.createElement("button");
+				let closeButton = document.createElement("button");
 				closeButton.className = "btn btn-primary btn-sm";
 				closeButton.type = "button";
 				closeButton.setAttribute("data-dismiss", "modal");
 				modalFooter.appendChild(closeButton);
-				var closeIcon = document.createElement("img");
+				let closeIcon = document.createElement("img");
 				closeIcon.className = "icon-custom-small";
 				closeIcon.src = "/img/icon/close_256px.png";
 				closeIcon.alt = "Close";
@@ -294,7 +294,7 @@ function getAllBlogsSelf() {
 }
 
 function createNewBlog(recapIndex) {
-	var bodyRaw = {
+	let bodyRaw = {
 		"url": document.getElementById("blog-create-url").value,
 		"type": "PERSONAL",
 		"gcap": grecaptcha.getResponse(recapIndex)
@@ -327,10 +327,9 @@ function createNewBlog(recapIndex) {
 }
 
 function updateBlog(editId) {
-	var blogId = editId.split(".")[2];
-	//TODO: Support show age, and url changing
+	let blogId = editId.split(".")[2];
 
-	var bodyRaw = {
+	let bodyRaw = {
 		"id": blogId,
 		"name": document.getElementById("edit-title-" + blogId).value,
 		"description": document.getElementById("edit-description-" + blogId).value,
@@ -389,7 +388,7 @@ function showAgeSelf(ageElement) {
 		method: "POST",
 		dataType: "json",
 		success: function (json) {
-			var birth = json.account.birthday;
+			let birth = json.account.birthday;
 
 			ageElement.innerHTML = getAge(birth).toString();
 		},

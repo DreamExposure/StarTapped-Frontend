@@ -1,5 +1,5 @@
 function updateEmail() {
-	var bodyRaw = {
+	let bodyRaw = {
 		"email": document.getElementById("update-email-email").value,
 		"password": document.getElementById("update-email-password").value,
 		"gcap": grecaptcha.getResponse(1)
@@ -28,7 +28,7 @@ function updateEmail() {
 }
 
 function updatePassword() {
-	var bodyRaw = {
+	let bodyRaw = {
 		"old_password": document.getElementById("update-password-current").value,
 		"password": document.getElementById("update-password-new").value,
 		"gcap": grecaptcha.getResponse(0)
@@ -62,7 +62,7 @@ function updatePassword() {
 }
 
 function updateSafeSearch() {
-	var bodyRaw = {
+	let bodyRaw = {
 		"safe_search": document.getElementById("update-safe-search").checked
 	};
 
@@ -117,10 +117,10 @@ function checkPasswordValidity(input) {
 }
 
 function getAge(dateString) {
-	var today = new Date();
-	var birthDate = new Date(dateString);
-	var age = today.getFullYear() - birthDate.getFullYear();
-	var m = today.getMonth() - birthDate.getMonth();
+	let today = new Date();
+	let birthDate = new Date(dateString);
+	let age = today.getFullYear() - birthDate.getFullYear();
+	let m = today.getMonth() - birthDate.getMonth();
 	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
 		age--;
 	}
