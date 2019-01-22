@@ -87,6 +87,17 @@ h6 {
   display: inline-block;
 }
 
+.post-main-container {
+    padding-bottom: inherit;
+}
+
+.post-container {
+    position: relative;
+    width: 340px;
+    height: 500px;
+    margin: 1rem;
+}
+
 footer.footer {
   position: absolute;
   right: 0;

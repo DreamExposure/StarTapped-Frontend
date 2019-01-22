@@ -1,6 +1,6 @@
-function TimeIndex(month, year) {
-    this.month = month;
-    this.year = year;
+function TimeIndex() {
+    this.month = new Date().getMonth();
+    this.year = new Date().getFullYear();
 
     this.getStart = function () {
         let d = new Date(this.year, this.month, 1);
@@ -17,20 +17,20 @@ function TimeIndex(month, year) {
     };
 
     this.forwardOneMonth = function () {
-        if (month === 11) {
-            month = 0;
-            year++;
+        if (this.month === 11) {
+            this.month = 0;
+            this.year++;
         } else {
-            month++;
+            this.month++;
         }
     };
 
     this.backwardOneMonth = function () {
-        if (month === 0) {
-            month = 11;
-            year--;
+        if (this.month === 0) {
+            this.month = 11;
+            this.year--;
         } else {
-            month--;
+            this.month--;
         }
     }
 }

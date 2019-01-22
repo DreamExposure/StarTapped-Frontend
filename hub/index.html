@@ -52,6 +52,7 @@
 		<!--JS-->
 		<script src="/js/objects/Account.js"></script>
 		<script src="/js/objects/Blog.js"></script>
+		<script src="/js/objects/TimeIndex.js"></script>
 
 		<script src="/js/account/logout.js"></script>
 		<script src="/js/account/auth.js"></script>
@@ -65,7 +66,7 @@
 		        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	</head>
 
-	<body onload="doLoadHub()">
+	<body onload="doLoadHub()" class="bg-dark">
 
 		<!-- Navigation -->
 		<nav class="navbar navbar-dark bg-dark static-top">
@@ -79,7 +80,20 @@
 			</div>
 		</nav>
 
-		<!--Content-->
+		<!--Posts-->
+		<div class="post-main-container text-center">
+			<div class="container">
+				<div>
+					<div id="post-container">
+					</div>
+					<br>
+					<br>
+					<div class="text-center">
+						<h3 class="text-primary">There's no more. Follow some blogs to see more posts!</h3>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<!-- Footer -->
 		<footer class="footer bg-dark">
