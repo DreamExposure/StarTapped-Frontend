@@ -30,7 +30,7 @@ function showPosts(json) {
         for (let i = 0; i < posts.length; i++) {
             let p = posts[i];
 
-            if (p.timestamp >= timeIndex.getStart().getMilliseconds() && p.timestamp <= timeIndex.getStop().getMilliseconds()) {
+            if (p.timestamp >= timeIndex.getStart().getTime() && p.timestamp <= timeIndex.getStop().getTime()) {
                 //Add posts to the hub view, at the bottom...
                 if (p.parent !== "Unassigned") {
                     rootLayout.appendChild(generatePostTree(p, posts));

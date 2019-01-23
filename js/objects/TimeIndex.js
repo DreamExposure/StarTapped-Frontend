@@ -10,8 +10,8 @@ function TimeIndex() {
     };
 
     this.getStop = function () {
-        let d = this.getStart();
-        d.setMonth(d.getMonth() + 1);
+        let d = new Date(this.year, this.month + 1, 1);
+        d.setHours(0, 0, 0 ,0);
 
         return d;
     };
