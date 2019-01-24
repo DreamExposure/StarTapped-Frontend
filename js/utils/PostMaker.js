@@ -68,9 +68,9 @@ function generatePostTree(lowest, posts) {
         blogUrlSecond.style.display = '';
         reblogIcon.style.display = '';
 
-        blogUrlLatest.href = lowest.originBlog.fullUrl;
+        blogUrlLatest.href = lowest.originBlog.completeUrl;
         blogUrlLatest.target = "_blank";
-        blogUrlSecond.href = postsInOrder[0].originBlog.fullUrl;
+        blogUrlSecond.href = postsInOrder[0].originBlog.completeUrl;
         blogUrlSecond.target = "_blank";
     }
 
@@ -89,22 +89,22 @@ function generateTextPost(post, parent, showTopBar, showBottomBar) {
     let postTitle = document.createElement("h3");
     let postBody = document.createElement("p");
     let source = document.createElement("a");
-    let bookmark = document.createElement("button");
-    let reblog = document.createElement("button");
+    let bookmark = document.createElement("img");
+    let reblog = document.createElement("img");
 
     //Set view classes
-    root.className = "post-container bg-light";
-    topBar.className = "post-top-bar";
-    contents.className = "post-contents";
-    bottomBar.className = "post-bottom-bar";
+    root.className = "post-container bg-light rounded";
+    topBar.className = "post-top-bar bg-light border-dark rounded-top";
+    contents.className = "post-contents bg-light";
+    bottomBar.className = "post-bottom-bar bg-light border-dark rounded-bottom";
     blogUrlLatest.className = "blog-url-latest text-link-color underline-solid";
     blogUrlSecond.className = "blog-url-second text-link-color underline-solid";
     reblogIcon.className = "reblog-icon";
     postTitle.className = "post-title text-primary text-center";
     postBody.className = "post-body text-dark";
     source.className = "post-source text-dark underline-solid";
-    bookmark.className = "post-bookmark";
-    reblog.className = "post-reblog";
+    bookmark.className = "post-bookmark btn-light rounded";
+    reblog.className = "post-reblog btn-light rounded";
 
     //Append all the views...
     root.appendChild(topBar);
@@ -124,6 +124,9 @@ function generateTextPost(post, parent, showTopBar, showBottomBar) {
     blogUrlLatest.href = "#";
     blogUrlSecond.href = "#";
     source.href = "#";
+    bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
+    reblog.src = "https://www.startapped.com/img/icon/reblog_256px.png";
+
 
     //Set data
     blogUrlLatest.innerText = post.originBlog.baseUrl;
@@ -158,16 +161,16 @@ function generateTextPost(post, parent, showTopBar, showBottomBar) {
 
     //Set handlers for buttons and links...
     if (showTopBar) {
-        blogUrlLatest.href = post.originBlog.fullUrl;
+        blogUrlLatest.href = post.originBlog.completeUrl;
         blogUrlLatest.target = "_blank";
 
         if (parent != null) {
-            blogUrlSecond.href = parent.originBlog.fullUrl;
+            blogUrlSecond.href = parent.originBlog.completeUrl;
             blogUrlSecond.target = "_blank";
         }
     }
     if (showBottomBar) {
-        source.href = post.originBlog.fullUrl;
+        source.href = post.originBlog.completeUrl;
         source.target = "_blank";
 
         bookmark.onclick = function (ignore) {
@@ -191,29 +194,29 @@ function generateImagePost(post, parent, showTopBar, showBottomBar) {
     let blogUrlLatest = document.createElement("a");
     let blogUrlSecond = document.createElement("a");
     let reblogIcon = document.createElement("img");
-    let imageContainer = document.createElement("div");
-    let image = document.createElement("img");
     let postTitle = document.createElement("h3");
     let postBody = document.createElement("p");
     let source = document.createElement("a");
-    let bookmark = document.createElement("button");
-    let reblog = document.createElement("button");
+    let bookmark = document.createElement("img");
+    let reblog = document.createElement("img");
+    let imageContainer = document.createElement("div");
+    let image = document.createElement("img");
 
     //Set view classes
-    root.className = "post-container";
-    topBar.className = "post-top-bar";
-    contents.className = "post-contents";
-    bottomBar.className = "post-bottom-bar";
-    blogUrlLatest.className = "blog-url-latest";
-    blogUrlSecond.className = "blog-url-second";
+    root.className = "post-container bg-light rounded";
+    topBar.className = "post-top-bar bg-light border-dark rounded-top";
+    contents.className = "post-contents bg-light";
+    bottomBar.className = "post-bottom-bar bg-light border-dark rounded-bottom";
+    blogUrlLatest.className = "blog-url-latest text-link-color underline-solid";
+    blogUrlSecond.className = "blog-url-second text-link-color underline-solid";
     reblogIcon.className = "reblog-icon";
+    postTitle.className = "post-title text-primary text-center";
+    postBody.className = "post-body text-dark";
+    source.className = "post-source text-dark underline-solid";
+    bookmark.className = "post-bookmark btn-light rounded";
+    reblog.className = "post-reblog btn-light rounded";
     imageContainer.className = "post-image-container";
     image.className = "post-image";
-    postTitle.className = "post-title";
-    postBody.className = "post-body";
-    source.className = "post-source";
-    bookmark.className = "post-bookmark";
-    reblog.className = "post-reblog";
 
     //Append all the views...
     root.appendChild(topBar);
@@ -232,9 +235,16 @@ function generateImagePost(post, parent, showTopBar, showBottomBar) {
 
     //Set default data stuff for the things that need it.
     reblogIcon.src = "https://www.startapped.com/img/icon/reblog_256px.png";
+    blogUrlLatest.href = "#";
+    blogUrlSecond.href = "#";
+    source.href = "#";
+    bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
+    reblog.src = "https://www.startapped.com/img/icon/reblog_256px.png";
+
 
     //Set data
     blogUrlLatest.innerText = post.originBlog.baseUrl;
+    blogUrlLatest.href = "#";
     if (parent != null) {
         blogUrlSecond.innerText = parent.originBlog.baseUrl;
     } else {
@@ -267,16 +277,16 @@ function generateImagePost(post, parent, showTopBar, showBottomBar) {
 
     //Set handlers for buttons and links...
     if (showTopBar) {
-        blogUrlLatest.href = post.originBlog.fullUrl;
+        blogUrlLatest.href = post.originBlog.completeUrl;
         blogUrlLatest.target = "_blank";
 
         if (parent != null) {
-            blogUrlSecond.href = parent.originBlog.fullUrl;
+            blogUrlSecond.href = parent.originBlog.completeUrl;
             blogUrlSecond.target = "_blank";
         }
     }
     if (showBottomBar) {
-        source.href = post.originBlog.fullUrl;
+        source.href = post.originBlog.completeUrl;
         source.target = "_blank";
 
         bookmark.onclick = function (ignore) {
@@ -306,22 +316,22 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar) {
     let postTitle = document.createElement("h3");
     let postBody = document.createElement("p");
     let source = document.createElement("a");
-    let bookmark = document.createElement("button");
-    let reblog = document.createElement("button");
+    let bookmark = document.createElement("img");
+    let reblog = document.createElement("img");
 
     //Set view classes
-    root.className = "post-container";
-    topBar.className = "post-top-bar";
-    contents.className = "post-contents";
-    bottomBar.className = "post-bottom-bar";
-    blogUrlLatest.className = "blog-url-latest";
-    blogUrlSecond.className = "blog-url-second";
+    root.className = "post-container bg-light rounded";
+    topBar.className = "post-top-bar bg-light border-dark rounded-top";
+    contents.className = "post-contents bg-light";
+    bottomBar.className = "post-bottom-bar bg-light border-dark rounded-bottom";
+    blogUrlLatest.className = "blog-url-latest text-link-color underline-solid";
+    blogUrlSecond.className = "blog-url-second text-link-color underline-solid";
     reblogIcon.className = "reblog-icon";
-    postTitle.className = "post-title";
-    postBody.className = "post-body";
-    source.className = "post-source";
-    bookmark.className = "post-bookmark";
-    reblog.className = "post-reblog";
+    postTitle.className = "post-title text-primary text-center";
+    postBody.className = "post-body text-dark";
+    source.className = "post-source text-dark underline-solid";
+    bookmark.className = "post-bookmark btn-light rounded";
+    reblog.className = "post-reblog btn-light rounded";
 
     //Append all the views...
     root.appendChild(topBar);
@@ -338,9 +348,16 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar) {
 
     //Set default data stuff for the things that need it.
     reblogIcon.src = "https://www.startapped.com/img/icon/reblog_256px.png";
+    blogUrlLatest.href = "#";
+    blogUrlSecond.href = "#";
+    source.href = "#";
+    bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
+    reblog.src = "https://www.startapped.com/img/icon/reblog_256px.png";
+
 
     //Set data
     blogUrlLatest.innerText = post.originBlog.baseUrl;
+    blogUrlLatest.href = "#";
     if (parent != null) {
         blogUrlSecond.innerText = parent.originBlog.baseUrl;
     } else {
@@ -371,16 +388,16 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar) {
 
     //Set handlers for buttons and links...
     if (showTopBar) {
-        blogUrlLatest.href = post.originBlog.fullUrl;
+        blogUrlLatest.href = post.originBlog.completeUrl;
         blogUrlLatest.target = "_blank";
 
         if (parent != null) {
-            blogUrlSecond.href = parent.originBlog.fullUrl;
+            blogUrlSecond.href = parent.originBlog.completeUrl;
             blogUrlSecond.target = "_blank";
         }
     }
     if (showBottomBar) {
-        source.href = post.originBlog.fullUrl;
+        source.href = post.originBlog.completeUrl;
         source.target = "_blank";
 
         bookmark.onclick = function (ignore) {
@@ -410,22 +427,22 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar) {
     let postTitle = document.createElement("h3");
     let postBody = document.createElement("p");
     let source = document.createElement("a");
-    let bookmark = document.createElement("button");
-    let reblog = document.createElement("button");
+    let bookmark = document.createElement("img");
+    let reblog = document.createElement("img");
 
     //Set view classes
-    root.className = "post-container";
-    topBar.className = "post-top-bar";
-    contents.className = "post-contents";
-    bottomBar.className = "post-bottom-bar";
-    blogUrlLatest.className = "blog-url-latest";
-    blogUrlSecond.className = "blog-url-second";
+    root.className = "post-container bg-light rounded";
+    topBar.className = "post-top-bar bg-light border-dark rounded-top";
+    contents.className = "post-contents bg-light";
+    bottomBar.className = "post-bottom-bar bg-light border-dark rounded-bottom";
+    blogUrlLatest.className = "blog-url-latest text-link-color underline-solid";
+    blogUrlSecond.className = "blog-url-second text-link-color underline-solid";
     reblogIcon.className = "reblog-icon";
-    postTitle.className = "post-title";
-    postBody.className = "post-body";
-    source.className = "post-source";
-    bookmark.className = "post-bookmark";
-    reblog.className = "post-reblog";
+    postTitle.className = "post-title text-primary text-center";
+    postBody.className = "post-body text-dark";
+    source.className = "post-source text-dark underline-solid";
+    bookmark.className = "post-bookmark btn-light rounded";
+    reblog.className = "post-reblog btn-light rounded";
 
     //Append all the views...
     root.appendChild(topBar);
@@ -442,9 +459,16 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar) {
 
     //Set default data stuff for the things that need it.
     reblogIcon.src = "https://www.startapped.com/img/icon/reblog_256px.png";
+    blogUrlLatest.href = "#";
+    blogUrlSecond.href = "#";
+    source.href = "#";
+    bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
+    reblog.src = "https://www.startapped.com/img/icon/reblog_256px.png";
+
 
     //Set data
     blogUrlLatest.innerText = post.originBlog.baseUrl;
+    blogUrlLatest.href = "#";
     if (parent != null) {
         blogUrlSecond.innerText = parent.originBlog.baseUrl;
     } else {
@@ -475,16 +499,16 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar) {
 
     //Set handlers for buttons and links...
     if (showTopBar) {
-        blogUrlLatest.href = post.originBlog.fullUrl;
+        blogUrlLatest.href = post.originBlog.completeUrl;
         blogUrlLatest.target = "_blank";
 
         if (parent != null) {
-            blogUrlSecond.href = parent.originBlog.fullUrl;
+            blogUrlSecond.href = parent.originBlog.completeUrl;
             blogUrlSecond.target = "_blank";
         }
     }
     if (showBottomBar) {
-        source.href = post.originBlog.fullUrl;
+        source.href = post.originBlog.completeUrl;
         source.target = "_blank";
 
         bookmark.onclick = function (ignore) {
