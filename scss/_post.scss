@@ -18,7 +18,7 @@
 }
 
 .post-contents {
-
+  width: 100%;
 }
 
 .post-bottom-bar {
@@ -117,49 +117,46 @@
 
 //Image post stuffs
 .post-image-container {
+  width: 100%;
 
 }
 
 .post-image {
-
+  width: 100%;
+  height: fit-content;
+  object-fit: contain;
 }
 
 //TODO: Add image overlay modal class stuff as needed...
 
 //Audio Post stuffs
 .post-audio-container {
-
+  width: 100%;
+  overflow: hidden;
 }
 
-.post-audio-play-button {
+.post-audio-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
+  font-size: 11pt;
+
+  margin-left: 5pt;
 }
 
-.post-audio-mute-button {
-
-}
-
-.post-audio-name-display {
-
-}
-
-.post-audio-scrubber {
-
+.post-audio {
+  width: 100%;
 }
 
 //Video post stuffs
 .post-video-container {
+  width: 100%;
 
+  overflow: hidden;
 }
 
-.post-video-play-button {
-
-}
-
-.post-video-mute-button {
-
-}
-
-.post-video-scrubber {
-
+.post-video {
+  width: 100%;
+  height: auto;
 }

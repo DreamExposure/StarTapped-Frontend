@@ -104,6 +104,10 @@ h6 {
   height: 25px;
 }
 
+.post-contents {
+  width: 100%;
+}
+
 .post-bottom-bar {
   border-top: 1px solid;
   width: 100%;
@@ -181,6 +185,46 @@ h6 {
   width: 35px;
   height: 35px;
   margin: 1pt 5pt 1pt 0;
+}
+
+.post-image-container {
+  width: 100%;
+}
+
+.post-image {
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+.post-audio-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.post-audio-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11pt;
+  margin-left: 5pt;
+}
+
+.post-audio {
+  width: 100%;
+}
+
+.post-video-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.post-video {
+  width: 100%;
+  height: auto;
 }
 
 footer.footer {

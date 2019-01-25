@@ -21,7 +21,7 @@ function showPosts(json) {
 
         //Sort latest to earliest (I hope)
         posts.sort(function (a, b) {
-            return new Date(a.timestamp) - new Date(b.timestamp);
+            return new Date(b.timestamp) - new Date(a.timestamp);
         });
 
         let rootLayout = document.getElementById("post-container");

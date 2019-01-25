@@ -185,7 +185,7 @@ function generateTextPost(post, parent, showTopBar, showBottomBar) {
     return root;
 }
 
-function generateImagePost(post, parent, showTopBar, showBottomBar) {
+function generateImagePost(post, parent, showTopBar, showBottomBar)     {
     //Load views
     let root = document.createElement("div");
     let topBar = document.createElement("div");
@@ -298,14 +298,69 @@ function generateImagePost(post, parent, showTopBar, showBottomBar) {
         };
     }
 
-    //TODO: setup modal/popup for image....
+    let modalId = uuid();
+
+    //Create modal container
+    let modalContainer = document.createElement("div");
+    modalContainer.className = "modal fade";
+    modalContainer.id = "modal-" + modalId;
+    modalContainer.role = "dialog";
+    root.appendChild(modalContainer);
+
+    //Create modal-dialog
+    let modalDia = document.createElement("div");
+    modalDia.className = "modal-dialog";
+    modalContainer.appendChild(modalDia);
+
+    //Create Modal Content
+    let modalCon = document.createElement("div");
+    modalCon.className = "modal-content bg-dark";
+    modalDia.appendChild(modalCon);
+
+    //Create modal header and title
+    let modalHeader = document.createElement("div");
+    modalHeader.className = "modal-header";
+    modalCon.appendChild(modalHeader);
+    let modalTitle = document.createElement("h4");
+    modalTitle.className = "modal-title text-light";
+    modalTitle.innerText = "Image";
+    modalHeader.appendChild(modalTitle);
+
+    //Create Modal Body
+    let modalBody = document.createElement("div");
+    modalBody.className = "modal-body";
+    modalCon.appendChild(modalBody);
+
+    let modalImage = document.createElement("img");
+    modalImage.className = "post-image";
+    modalImage.src = post.imageUrl;
+    modalBody.appendChild(modalImage);
+
+    //Create modal footer
+    let modalFooter = document.createElement("div");
+    modalFooter.className = "modal-footer";
+    modalCon.appendChild(modalFooter);
+
+    let closeButton = document.createElement("button");
+    closeButton.className = "btn btn-primary btn-sm";
+    closeButton.type = "button";
+    closeButton.setAttribute("data-dismiss", "modal");
+    modalFooter.appendChild(closeButton);
+    let closeIcon = document.createElement("img");
+    closeIcon.className = "icon-custom-small";
+    closeIcon.src = "/img/icon/close_256px.png";
+    closeIcon.alt = "Close";
+    closeButton.appendChild(closeIcon);
+
+    //Make sure image opens modal:
+    imageContainer.setAttribute("data-toggle", "modal");
+    imageContainer.setAttribute("data-target", "#modal-" + modalId);
 
     return root;
 }
 
 function generateAudioPost(post, parent, showTopBar, showBottomBar) {
     //Load views
-    //TODO: Load audio container!!!
     let root = document.createElement("div");
     let topBar = document.createElement("div");
     let contents = document.createElement("div");
@@ -318,6 +373,10 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar) {
     let source = document.createElement("a");
     let bookmark = document.createElement("img");
     let reblog = document.createElement("img");
+    let audioContainer = document.createElement("div");
+    let audioName = document.createElement("p");
+    let audio = document.createElement("audio");
+    let audioSrc = document.createElement("source");
 
     //Set view classes
     root.className = "post-container bg-light rounded";
@@ -332,6 +391,9 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar) {
     source.className = "post-source text-dark underline-solid";
     bookmark.className = "post-bookmark btn-light rounded";
     reblog.className = "post-reblog btn-light rounded";
+    audioContainer.className = "post-audio-container bg-secondary";
+    audioName.className = "post-audio-name text-dark";
+    audio.className = "post-audio";
 
     //Append all the views...
     root.appendChild(topBar);
@@ -340,11 +402,15 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar) {
     topBar.appendChild(blogUrlLatest);
     topBar.appendChild(reblogIcon);
     topBar.appendChild(blogUrlSecond);
+    contents.appendChild(audioContainer);
     contents.appendChild(postTitle);
     contents.appendChild(postBody);
     bottomBar.appendChild(source);
     bottomBar.appendChild(bookmark);
     bottomBar.appendChild(reblog);
+    audioContainer.appendChild(audioName);
+    audioContainer.appendChild(audio);
+    audio.appendChild(audioSrc);
 
     //Set default data stuff for the things that need it.
     reblogIcon.src = "https://www.startapped.com/img/icon/reblog_256px.png";
@@ -353,6 +419,7 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar) {
     source.href = "#";
     bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
     reblog.src = "https://www.startapped.com/img/icon/reblog_256px.png";
+    audioSrc.innerText = "Your browser does not support the Audio Tag";
 
 
     //Set data
@@ -409,14 +476,17 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar) {
         };
     }
 
-    //TODO: Setup all of the audio player controls and src!!!
+    //Setup all of the audio player controls and src!!!
+    audioName.innerText = "File Name: " + post.audioUrl;
+    audio.setAttribute("controls", "");
+    audio.setAttribute("loop", "");
+    audioSrc.src = post.audioUrl;
 
     return root;
 }
 
 function generateVideoPost(post, parent, showTopBar, showBottomBar) {
     //Load views
-    //TODO: load video container!!!!!!!!
     let root = document.createElement("div");
     let topBar = document.createElement("div");
     let contents = document.createElement("div");
@@ -429,6 +499,9 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar) {
     let source = document.createElement("a");
     let bookmark = document.createElement("img");
     let reblog = document.createElement("img");
+    let videoContainer = document.createElement("div");
+    let video = document.createElement("video");
+    let videoSrc = document.createElement("source");
 
     //Set view classes
     root.className = "post-container bg-light rounded";
@@ -443,6 +516,8 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar) {
     source.className = "post-source text-dark underline-solid";
     bookmark.className = "post-bookmark btn-light rounded";
     reblog.className = "post-reblog btn-light rounded";
+    videoContainer.className = "post-video-container bg-secondary";
+    video.className = "post-video";
 
     //Append all the views...
     root.appendChild(topBar);
@@ -451,11 +526,14 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar) {
     topBar.appendChild(blogUrlLatest);
     topBar.appendChild(reblogIcon);
     topBar.appendChild(blogUrlSecond);
+    contents.appendChild(videoContainer);
     contents.appendChild(postTitle);
     contents.appendChild(postBody);
     bottomBar.appendChild(source);
     bottomBar.appendChild(bookmark);
     bottomBar.appendChild(reblog);
+    videoContainer.appendChild(video);
+    video.appendChild(videoSrc);
 
     //Set default data stuff for the things that need it.
     reblogIcon.src = "https://www.startapped.com/img/icon/reblog_256px.png";
@@ -464,6 +542,7 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar) {
     source.href = "#";
     bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
     reblog.src = "https://www.startapped.com/img/icon/reblog_256px.png";
+    videoSrc.innerText = "Your browser does not support the Video Tag";
 
 
     //Set data
@@ -520,7 +599,10 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar) {
         };
     }
 
-    //TODO: Setup all of the video player controls and src!!!!!
+    //Setup all of the video player controls and src!!!!!
+    video.setAttribute("controls", "");
+    video.setAttribute("loop", "");
+    videoSrc.src = post.videoUrl;
 
     return root;
 }
@@ -533,4 +615,11 @@ function getPostFromArray(posts, id) {
         }
     }
     return null;
+}
+
+function uuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        let r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
 }
