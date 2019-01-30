@@ -17,3 +17,4 @@ out/
 **/dependency-reduced-pom.xml
 **/target
 **/node_modules
+**/*.DS_Store
