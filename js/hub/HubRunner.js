@@ -13,6 +13,11 @@ function showPosts(json) {
     if (json.count <= 0) {
         keepChecking = false;
     } else {
+        if (json.range.latest > 0) {
+            timeIndex.latest = json.range.latest;
+            timeIndex.oldest = json.range.oldest;
+        }
+
         let posts = [];
         //Turn json array to post array...
         for (let i = 0; i < json.count; i++) {
@@ -30,7 +35,7 @@ function showPosts(json) {
         for (let i = 0; i < posts.length; i++) {
             let p = posts[i];
 
-            if (p.timestamp >= timeIndex.getStart().getTime() && p.timestamp <= timeIndex.getStop().getTime()) {
+            if (p.timestamp >= timeIndex.oldest && p.timestamp <= timeIndex.latest) {
                 //Add posts to the hub view, at the bottom...
                 if (p.parent !== "Unassigned") {
                     rootLayout.appendChild(generatePostTree(p, posts));
@@ -52,15 +57,15 @@ function showPosts(json) {
             }
         }
     }
-    timeIndex.backwardOneMonth();
+    timeIndex.before = timeIndex.oldest - 1;
     isGenerating = false;
 }
 
 function getPostsFromServer() {
     if (!isGenerating && keepChecking) {
         let bodyRaw = {
-            "year": timeIndex.year,
-            "month": timeIndex.month
+            "before": timeIndex.before,
+            "limit": 20
         };
 
         $.ajax({
