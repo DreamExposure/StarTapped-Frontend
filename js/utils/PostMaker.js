@@ -138,8 +138,8 @@ function generateTextPost(post, parent, showTopBar, showBottomBar) {
         blogUrlSecond.style.display = 'none';
     }
 
-    postTitle.innerText = post.title;
-    postBody.innerText = post.body;
+    postTitle.innerHTML = textWithLinks(post.title);
+    postBody.innerHTML = textWithLinks(post.body);
 
     source.innerText = "Source: " + post.originBlog.baseUrl;
 
@@ -252,8 +252,8 @@ function generateImagePost(post, parent, showTopBar, showBottomBar)     {
         blogUrlSecond.style.display = 'none';
     }
 
-    postTitle.innerText = post.title;
-    postBody.innerText = post.body;
+    postTitle.innerHTML = textWithLinks(post.title);
+    postBody.innerHTML = textWithLinks(post.body);
 
     source.innerText = "Source: " + post.originBlog.baseUrl;
 
@@ -432,8 +432,8 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar) {
         blogUrlSecond.style.display = 'none';
     }
 
-    postTitle.innerText = post.title;
-    postBody.innerText = post.body;
+    postTitle.innerHTML = textWithLinks(post.title);
+    postBody.innerHTML = textWithLinks(post.body);
 
     source.innerText = "Source: " + post.originBlog.baseUrl;
 
@@ -555,8 +555,8 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar) {
         blogUrlSecond.style.display = 'none';
     }
 
-    postTitle.innerText = post.title;
-    postBody.innerText = post.body;
+    postTitle.innerHTML = textWithLinks(post.title);
+    postBody.innerHTML = textWithLinks(post.body);
 
     source.innerText = "Source: " + post.originBlog.baseUrl;
 
@@ -619,7 +619,15 @@ function getPostFromArray(posts, id) {
 
 function uuid() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        let r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+        let r = Math.random() * 16, v = c === 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
+    });
+}
+
+function textWithLinks(text) {
+    let urlRegex = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm;
+
+    return text.replace(urlRegex, function(url) {
+       return '<a href="' + url + '" target="_blank" class="text-link-color">' + url + "</a>";
     });
 }
