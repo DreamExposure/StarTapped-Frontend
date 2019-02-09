@@ -1,4 +1,4 @@
-var encodedFiles = new Map();
+let encodedFiles = new Map();
 
 function encodeImageFileAsBase64(element) {
 
@@ -15,6 +15,7 @@ function encodeImageFileAsBase64(element) {
 
 				let result = {
 					type: srcData.split(",")[0].split(":")[1].split(";")[0],
+					name: element.value.split(/([\\/])/g).pop(),
 					encoded: srcData.split(",")[1]
 				};
 				removeEncodedResults(element.id); //Just in case the user changes the image

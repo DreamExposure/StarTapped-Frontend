@@ -257,7 +257,8 @@ function generateImagePost(post, parent, showTopBar, showBottomBar)     {
 
     source.innerText = "Source: " + post.originBlog.baseUrl;
 
-    image.src = post.imageUrl;
+    image.src = post.image.url;
+    image.alt = post.image.name;
 
     //Hide TopBar views if needed...
     if (!showTopBar) {
@@ -333,7 +334,8 @@ function generateImagePost(post, parent, showTopBar, showBottomBar)     {
 
     let modalImage = document.createElement("img");
     modalImage.className = "post-image";
-    modalImage.src = post.imageUrl;
+    modalImage.src = post.image.url;
+    modalImage.alt = post.image.name;
     modalBody.appendChild(modalImage);
 
     //Create modal footer
@@ -477,10 +479,10 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar) {
     }
 
     //Setup all of the audio player controls and src!!!
-    audioName.innerText = "File Name: " + post.audioUrl;
+    audioName.innerText = "File Name: " + post.audio.name;
     audio.setAttribute("controls", "");
     audio.setAttribute("loop", "");
-    audioSrc.src = post.audioUrl;
+    audioSrc.src = post.audio.url;
 
     return root;
 }
@@ -602,7 +604,7 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar) {
     //Setup all of the video player controls and src!!!!!
     video.setAttribute("controls", "");
     video.setAttribute("loop", "");
-    videoSrc.src = post.videoUrl;
+    videoSrc.src = post.video.url;
 
     return root;
 }

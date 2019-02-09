@@ -18,9 +18,9 @@ function Post() {
     this.parent = "Unassigned";
 
     //Post type specific..
-    this.imageUrl = "Unassigned";
-    this.audioUrl = "Unassigned";
-    this.videoUrl = "Unassigned";
+    this.image = new UploadedFile();
+    this.audio = new UploadedFile();
+    this.video = new UploadedFile();
 
 
     this.toJson = function () {
@@ -41,11 +41,11 @@ function Post() {
         }
 
         if (this.postType === "IMAGE") {
-            json.image_url = this.imageUrl;
+            json.image = this.image.toJson();
         } else if (this.postType === "AUDIO") {
-            json.audio_url = this.audioUrl;
+            json.audio = this.audio.toJson();
         } else if (this.postType === "VIDEO") {
-            json.video_url = this.videoUrl;
+            json.video = this.video.toJson();
         }
 
         return json;
@@ -67,12 +67,12 @@ function Post() {
             this.parent = json.parent;
         }
 
-        if (this.postType === "IMAGE" && json.hasOwnProperty('image_url')) {
-            this.imageUrl = json.image_url;
-        } else if (this.postType === "AUDIO" && json.hasOwnProperty('audio_url')) {
-            this.audioUrl = json.audio_url;
-        } else if (this.postType === "VIDEO" && json.hasOwnProperty('video_url')) {
-            this.videoUrl = json.video_url;
+        if (this.postType === "IMAGE" && json.hasOwnProperty('image')) {
+            this.image = new UploadedFile().fromJson(json.image);
+        } else if (this.postType === "AUDIO" && json.hasOwnProperty('audio')) {
+            this.audio = new UploadedFile().fromJson(json.audio);
+        } else if (this.postType === "VIDEO" && json.hasOwnProperty('video')) {
+            this.video = new UploadedFile().fromJson(json.video);
         }
 
         return this;

@@ -9,9 +9,9 @@ function Blog() {
     this.name = "Unassigned";
     this.description = "Unassigned";
 
-    this.iconUrl = "https://cdn.startapped.com/img/default/profile.jpg";
+    this.iconImage = new UploadedFile();
     this.backgroundColor = "#ffffff";
-    this.backgroundUrl = "https://cdn.startapped.com/img/default/background.jpg";
+    this.backgroundImage = new UploadedFile();
 
     this.allowUnder18 = true;
     this.nsfw = false;
@@ -33,9 +33,9 @@ function Blog() {
         this.blogType = json.type;
         this.name = json.name;
         this.description = json.description;
-        this.iconUrl = json.icon_url;
+        this.iconImage = new UploadedFile().fromJson(json.icon_image);
         this.backgroundColor = json.background_color;
-        this.backgroundUrl = json.background_url;
+        this.backgroundImage = new UploadedFile().fromJson(json.background_image);
         this.allowUnder18 = json.allow_under_18;
         this.nsfw = json.nsfw;
 
@@ -59,9 +59,9 @@ function Blog() {
             "type": this.blogType,
             "name": this.name,
             "description": this.description,
-            "icon_url": this.iconUrl,
+            "icon_image": this.iconImage.toJson(),
             "background_color": this.backgroundColor,
-            "background_url": this.backgroundUrl,
+            "background_image": this.backgroundImage.toJson(),
             "allow_under_18": this.allowUnder18,
             "nsfw": this.nsfw,
             "followers": this.followers

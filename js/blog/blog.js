@@ -34,7 +34,8 @@ function getAllBlogsSelf() {
 				//Header image
 				let header = document.createElement("img");
 				header.className = "blog-header-img rounded-top";
-				header.src = blog.backgroundUrl;
+				header.src = blog.backgroundImage.url;
+				header.alt = blog.backgroundImage.name;
 				container.appendChild(header);
 
 				//Create view link
@@ -57,7 +58,8 @@ function getAllBlogsSelf() {
 				//Icon image
 				let icon = document.createElement("img");
 				icon.className = "blog-profile-img rounded";
-				icon.src = blog.iconUrl;
+				icon.src = blog.iconImage.url;
+				icon.alt = blog.iconImage.name;
 				container.appendChild(icon);
 
 				//NSFW badge
