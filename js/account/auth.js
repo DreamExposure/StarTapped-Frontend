@@ -50,9 +50,9 @@ function initOnLandingPage() {
             },
             method: "POST",
             dataType: "json",
-            success: function (json) {
+            success: function (json, xhr) {
+                if (xhr.status === 201) {
                 //Save credentials
-                if (json.message === "Success") {
                     removeCredentials();
                     saveCredentials(json.credentials, true);
                 }
@@ -82,9 +82,9 @@ function initOnHub() {
                 },
                 method: "POST",
                 dataType: "json",
-                success: function (json) {
-                    //Save credentials
-                    if (json.message === "Success") {
+                success: function (json, xhr) {
+                    if (xhr.status === 201) {
+                        //Save credentials
                         removeCredentials();
                         saveCredentials(json.credentials, true);
                     }
