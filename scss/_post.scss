@@ -158,3 +158,63 @@
   width: 100%;
   height: auto;
 }
+
+.create-post-selection-container {
+  height: 50px;
+  width: 100%;
+}
+
+.create-post-selection-image {
+  height: 100%;
+  width: 10%;
+  object-fit: fill;
+  float: left;
+}
+
+.create-post-selection-drop-label {
+  height: 100%;
+  width: 90%;
+  float: right;
+  text-align: left;
+}
+
+.create-post-selection-drop {
+  height: 50%;
+  width: 100%;
+}
+
+.create-post-type-container {
+  width: 100%;
+}
+
+.create-post-type-toggle {
+  float: left;
+}
+
+.create-post-file-input {
+  float: left;
+}
+
+.create-post-title-label {
+  width: 100%;
+  height: 50px;
+  text-align: left;
+}
+
+.create-post-title-box {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.create-post-body-label {
+  width: 100%;
+  height: 100px;
+  text-align: left;
+}
+
+.create-post-body-box {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
