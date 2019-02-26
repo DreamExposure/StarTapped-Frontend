@@ -80,6 +80,26 @@
   width: 100%;
 }
 
+.post-tag-container {
+  white-space: nowrap;
+
+  overflow: scroll;
+
+  display: flex;
+
+  height: 40px;
+  width: 100%;
+}
+
+.post-tag {
+  height: 100%;
+
+  display: inline-block;
+
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
 .post-source {
   position: relative;
   float: left;

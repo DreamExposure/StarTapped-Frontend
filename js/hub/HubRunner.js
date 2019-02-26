@@ -48,13 +48,13 @@ function showPosts(json) {
                 } else {
                     let v = null;
                     if (p.postType === "TEXT") {
-                        v = generateTextPost(p, null, true, true);
+                        v = generateTextPost(p, null, true, true, true);
                     } else if (p.postType === "IMAGE") {
-                        v = generateImagePost(p, null, true, true);
+                        v = generateImagePost(p, null, true, true, true);
                     } else if (p.postType === "AUDIO") {
-                        v = generateAudioPost(p, null, true, true);
+                        v = generateAudioPost(p, null, true, true, true);
                     } else if (p.postType === "VIDEO") {
-                        v = generateVideoPost(p, null, true, true);
+                        v = generateVideoPost(p, null, true, true, true);
                     }
                     if (v != null) {
                         rootLayout.appendChild(v);

@@ -26,13 +26,13 @@ function generatePostTree(lowest, posts) {
        let v = null;
 
        if (p.postType === "TEXT") {
-            v = generateTextPost(p, null, false, false);
+           v = generateTextPost(p, null, false, false, false);
        } else if (p.postType === "IMAGE") {
-            v = generateImagePost(p, null, false, false);
+           v = generateImagePost(p, null, false, false, false);
        } else if (p.postType === "AUDIO") {
-            v = generateAudioPost(p, null, false, false);
+           v = generateAudioPost(p, null, false, false, false);
        } else if (p.postType === "VIDEO") {
-            v = generateVideoPost(p, null, false, false);
+           v = generateVideoPost(p, null, false, false, false);
        }
 
        if (first == null) {
@@ -44,13 +44,13 @@ function generatePostTree(lowest, posts) {
 
     let child = null;
     if (lowest.postType === "TEXT") {
-        child = generateTextPost(lowest, null, false, true);
+        child = generateTextPost(lowest, null, false, true, true);
     } else if (lowest.postType === "IMAGE") {
-        child = generateImagePost(lowest, null, false, true);
+        child = generateImagePost(lowest, null, false, true, true);
     } else if (lowest.postType === "AUDIO") {
-        child = generateAudioPost(lowest, null, false, true);
+        child = generateAudioPost(lowest, null, false, true, true);
     } else if (lowest.postType === "VIDEO") {
-        child = generateVideoPost(lowest, null, false, true);
+        child = generateVideoPost(lowest, null, false, true, true);
     }
     root.appendChild(child);
 
@@ -77,7 +77,8 @@ function generatePostTree(lowest, posts) {
     return root;
 }
 
-function generateTextPost(post, parent, showTopBar, showBottomBar) {
+// noinspection Duplicates
+function generateTextPost(post, parent, showTopBar, showBottomBar, showTags) {
     //Load views
     let root = document.createElement("div");
     let topBar = document.createElement("div");
@@ -88,6 +89,7 @@ function generateTextPost(post, parent, showTopBar, showBottomBar) {
     let reblogIcon = document.createElement("img");
     let postTitle = document.createElement("h3");
     let postBody = document.createElement("p");
+    let tagsContainer = document.createElement("div");
     let source = document.createElement("a");
     let bookmark = document.createElement("img");
     let reblog = document.createElement("img");
@@ -102,6 +104,7 @@ function generateTextPost(post, parent, showTopBar, showBottomBar) {
     reblogIcon.className = "reblog-icon";
     postTitle.className = "post-title text-primary text-center";
     postBody.className = "post-body text-dark";
+    tagsContainer.className = "post-tag-container";
     source.className = "post-source text-dark underline-solid";
     bookmark.className = "post-bookmark btn-light rounded";
     reblog.className = "post-reblog btn-light rounded";
@@ -115,6 +118,7 @@ function generateTextPost(post, parent, showTopBar, showBottomBar) {
     topBar.appendChild(blogUrlSecond);
     contents.appendChild(postTitle);
     contents.appendChild(postBody);
+    contents.appendChild(tagsContainer);
     bottomBar.appendChild(source);
     bottomBar.appendChild(bookmark);
     bottomBar.appendChild(reblog);
@@ -159,6 +163,11 @@ function generateTextPost(post, parent, showTopBar, showBottomBar) {
         bottomBar.style.display = 'none';
     }
 
+    //Hide post tags
+    if (!showTags || post.tags.length <= 0 || post.tags.toString().length <= 0) {
+        tagsContainer.style.display = 'none';
+    }
+
     //Set handlers for buttons and links...
     if (showTopBar) {
         blogUrlLatest.href = post.originBlog.completeUrl;
@@ -182,10 +191,29 @@ function generateTextPost(post, parent, showTopBar, showBottomBar) {
         };
     }
 
+    if (showTags && post.tags.length > 0 && post.tags.toString().length > 0) {
+        for (let i = 0; i < post.tags.length; i++) {
+            let tag = post.tags[i].trim();
+
+            if (tag.length > 0) {
+
+                let button = document.createElement("button");
+                button.className = "post-tag btn btn-info text-tag-color text-center";
+                button.innerText = "#" + tag;
+                tagsContainer.appendChild(button);
+
+                button.onclick = function (ignore) {
+                    //TODO: Handle tag click!!!!
+                }
+            }
+        }
+    }
+
     return root;
 }
 
-function generateImagePost(post, parent, showTopBar, showBottomBar)     {
+// noinspection Duplicates
+function generateImagePost(post, parent, showTopBar, showBottomBar, showTags) {
     //Load views
     let root = document.createElement("div");
     let topBar = document.createElement("div");
@@ -196,6 +224,7 @@ function generateImagePost(post, parent, showTopBar, showBottomBar)     {
     let reblogIcon = document.createElement("img");
     let postTitle = document.createElement("h3");
     let postBody = document.createElement("p");
+    let tagsContainer = document.createElement("div");
     let source = document.createElement("a");
     let bookmark = document.createElement("img");
     let reblog = document.createElement("img");
@@ -212,6 +241,7 @@ function generateImagePost(post, parent, showTopBar, showBottomBar)     {
     reblogIcon.className = "reblog-icon";
     postTitle.className = "post-title text-primary text-center";
     postBody.className = "post-body text-dark";
+    tagsContainer.className = "post-tag-container";
     source.className = "post-source text-dark underline-solid";
     bookmark.className = "post-bookmark btn-light rounded";
     reblog.className = "post-reblog btn-light rounded";
@@ -229,6 +259,7 @@ function generateImagePost(post, parent, showTopBar, showBottomBar)     {
     contents.appendChild(imageContainer);
     contents.appendChild(postTitle);
     contents.appendChild(postBody);
+    contents.appendChild(tagsContainer);
     bottomBar.appendChild(source);
     bottomBar.appendChild(bookmark);
     bottomBar.appendChild(reblog);
@@ -274,6 +305,11 @@ function generateImagePost(post, parent, showTopBar, showBottomBar)     {
         bookmark.style.display = 'none';
         reblog.style.display = 'none';
         bottomBar.style.display = 'none';
+    }
+
+    //Hide post tags
+    if (!showTags || post.tags.length <= 0 || post.tags.toString().length <= 0) {
+        tagsContainer.style.display = 'none';
     }
 
     //Set handlers for buttons and links...
@@ -361,7 +397,8 @@ function generateImagePost(post, parent, showTopBar, showBottomBar)     {
     return root;
 }
 
-function generateAudioPost(post, parent, showTopBar, showBottomBar) {
+// noinspection Duplicates
+function generateAudioPost(post, parent, showTopBar, showBottomBar, showTags) {
     //Load views
     let root = document.createElement("div");
     let topBar = document.createElement("div");
@@ -372,6 +409,7 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar) {
     let reblogIcon = document.createElement("img");
     let postTitle = document.createElement("h3");
     let postBody = document.createElement("p");
+    let tagsContainer = document.createElement("div");
     let source = document.createElement("a");
     let bookmark = document.createElement("img");
     let reblog = document.createElement("img");
@@ -390,6 +428,7 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar) {
     reblogIcon.className = "reblog-icon";
     postTitle.className = "post-title text-primary text-center";
     postBody.className = "post-body text-dark";
+    tagsContainer.className = "post-tag-container";
     source.className = "post-source text-dark underline-solid";
     bookmark.className = "post-bookmark btn-light rounded";
     reblog.className = "post-reblog btn-light rounded";
@@ -407,6 +446,7 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar) {
     contents.appendChild(audioContainer);
     contents.appendChild(postTitle);
     contents.appendChild(postBody);
+    contents.appendChild(tagsContainer);
     bottomBar.appendChild(source);
     bottomBar.appendChild(bookmark);
     bottomBar.appendChild(reblog);
@@ -455,6 +495,11 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar) {
         bottomBar.style.display = 'none';
     }
 
+    //Hide post tags
+    if (!showTags || post.tags.length <= 0 || post.tags.toString().length <= 0) {
+        tagsContainer.style.display = 'none';
+    }
+
     //Set handlers for buttons and links...
     if (showTopBar) {
         blogUrlLatest.href = post.originBlog.completeUrl;
@@ -487,7 +532,9 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar) {
     return root;
 }
 
-function generateVideoPost(post, parent, showTopBar, showBottomBar) {
+// noinspection Duplicates
+
+function generateVideoPost(post, parent, showTopBar, showBottomBar, showTags) {
     //Load views
     let root = document.createElement("div");
     let topBar = document.createElement("div");
@@ -498,6 +545,7 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar) {
     let reblogIcon = document.createElement("img");
     let postTitle = document.createElement("h3");
     let postBody = document.createElement("p");
+    let tagsContainer = document.createElement("div");
     let source = document.createElement("a");
     let bookmark = document.createElement("img");
     let reblog = document.createElement("img");
@@ -515,6 +563,7 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar) {
     reblogIcon.className = "reblog-icon";
     postTitle.className = "post-title text-primary text-center";
     postBody.className = "post-body text-dark";
+    tagsContainer.className = "post-tag-container";
     source.className = "post-source text-dark underline-solid";
     bookmark.className = "post-bookmark btn-light rounded";
     reblog.className = "post-reblog btn-light rounded";
@@ -531,6 +580,7 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar) {
     contents.appendChild(videoContainer);
     contents.appendChild(postTitle);
     contents.appendChild(postBody);
+    contents.appendChild(tagsContainer);
     bottomBar.appendChild(source);
     bottomBar.appendChild(bookmark);
     bottomBar.appendChild(reblog);
@@ -576,6 +626,11 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar) {
         bookmark.style.display = 'none';
         reblog.style.display = 'none';
         bottomBar.style.display = 'none';
+    }
+
+    //Hide post tags
+    if (!showTags || post.tags.length <= 0 || post.tags.toString().length <= 0) {
+        tagsContainer.style.display = 'none';
     }
 
     //Set handlers for buttons and links...
