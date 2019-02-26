@@ -1,7 +1,7 @@
 function showSnackbar(textToDisplay) {
 	// Get the snackbar DIV
 	let x = document.getElementById("snackbar");
-	x.innerHTML = textToDisplay;
+    x.innerText = textToDisplay;
 
 	// Add the "show" class to DIV
 	x.className = "show";
