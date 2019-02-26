@@ -335,6 +335,24 @@ function generateImagePost(post, parent, showTopBar, showBottomBar, showTags) {
         };
     }
 
+    if (showTags && post.tags.length > 0 && post.tags.toString().length > 0) {
+        for (let i = 0; i < post.tags.length; i++) {
+            let tag = post.tags[i].trim();
+
+            if (tag.length > 0) {
+
+                let button = document.createElement("button");
+                button.className = "post-tag btn btn-info text-tag-color text-center";
+                button.innerText = "#" + tag;
+                tagsContainer.appendChild(button);
+
+                button.onclick = function (ignore) {
+                    //TODO: Handle tag click!!!!
+                }
+            }
+        }
+    }
+
     let modalId = uuid();
 
     //Create modal container
@@ -523,6 +541,24 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar, showTags) {
         };
     }
 
+    if (showTags && post.tags.length > 0 && post.tags.toString().length > 0) {
+        for (let i = 0; i < post.tags.length; i++) {
+            let tag = post.tags[i].trim();
+
+            if (tag.length > 0) {
+
+                let button = document.createElement("button");
+                button.className = "post-tag btn btn-info text-tag-color text-center";
+                button.innerText = "#" + tag;
+                tagsContainer.appendChild(button);
+
+                button.onclick = function (ignore) {
+                    //TODO: Handle tag click!!!!
+                }
+            }
+        }
+    }
+
     //Setup all of the audio player controls and src!!!
     audioName.innerText = "File Name: " + post.audio.name;
     audio.setAttribute("controls", "");
@@ -654,6 +690,24 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar, showTags) {
         reblog.onclick = function (ignore) {
             //TODO: Handle reblog!!!!!
         };
+    }
+
+    if (showTags && post.tags.length > 0 && post.tags.toString().length > 0) {
+        for (let i = 0; i < post.tags.length; i++) {
+            let tag = post.tags[i].trim();
+
+            if (tag.length > 0) {
+
+                let button = document.createElement("button");
+                button.className = "post-tag btn btn-info text-tag-color text-center";
+                button.innerText = "#" + tag;
+                tagsContainer.appendChild(button);
+
+                button.onclick = function (ignore) {
+                    //TODO: Handle tag click!!!!
+                }
+            }
+        }
     }
 
     //Setup all of the video player controls and src!!!!!
