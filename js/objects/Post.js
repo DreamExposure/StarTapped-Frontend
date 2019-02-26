@@ -17,6 +17,8 @@ function Post() {
 
     this.parent = "Unassigned";
 
+    this.tags = [];
+
     //Post type specific..
     this.image = new UploadedFile();
     this.audio = new UploadedFile();
@@ -34,6 +36,7 @@ function Post() {
             "type": this.postType,
             "title": this.title,
             "body": this.body,
+            "tags": this.tags,
             "nsfw": this.nsfw
         };
         if (this.parent !== "Unassigned") {
@@ -51,6 +54,7 @@ function Post() {
         return json;
     };
 
+    // noinspection Duplicates
     this.fromJson = function (json) {
         this.id = json.id;
         this.creator = new Account().fromJson(json.creator);
@@ -65,6 +69,10 @@ function Post() {
 
         if (json.hasOwnProperty('parent')) {
             this.parent = json.parent;
+        }
+
+        if (json.hasOwnProperty('tags')) {
+            this.tags = json.tags
         }
 
         if (this.postType === "IMAGE" && json.hasOwnProperty('image')) {

@@ -19,6 +19,7 @@ function UploadedFile() {
         }
     };
 
+    // noinspection Duplicates
     this.fromJson = function (json) {
         this.hash = json.hash;
         this.path = json.path;

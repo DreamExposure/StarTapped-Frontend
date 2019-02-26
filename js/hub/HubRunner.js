@@ -141,11 +141,24 @@ function onBlogSelectChange() {
 
 function createNewPost() {
     let blogSelect = document.getElementById("create-post-blog-select");
+    let tagText = document.getElementById("create-post-tags").value;
+
+    let tags = [];
+
+    let tagSplit = tagText.split(",");
+    for (let i = 0; i < tagSplit.length; i++) {
+        let t = tagSplit[i].trim();
+        if (t.length > 0) {
+            tags.push(t);
+        }
+    }
+
     let bodyRaw = {
         "blog_id": blogSelect.options[blogSelect.selectedIndex].value,
         "type": getPostTypeForCreate(null),
         "title": document.getElementById("create-post-title").value,
         "body": document.getElementById("create-post-body").value,
+        "tags": tags,
         "nsfw": false //This will be added later. But it is also handled internally.
     };
 
@@ -211,6 +224,7 @@ function createNewPost() {
             handleTypeChange(null);
             document.getElementById("create-post-title").value = "";
             document.getElementById("create-post-body").value = "";
+            document.getElementById("create-post-tags").value = "";
 
             //Remove the encoded media from memory.
             removeEncodedResults("post-create-media");
