@@ -1,3 +1,4 @@
+//noinspection Duplicates
 function getAllBlogsSelf() {
 	let getBlogsBodyRaw = {
 		"all": true

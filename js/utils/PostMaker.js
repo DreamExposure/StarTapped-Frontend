@@ -404,7 +404,7 @@ function generateImagePost(post, parent, showTopBar, showBottomBar, showTags) {
     modalFooter.appendChild(closeButton);
     let closeIcon = document.createElement("img");
     closeIcon.className = "icon-custom-small";
-    closeIcon.src = "/img/icon/close_256px.png";
+    closeIcon.src = "https://www.startapped.com/img/icon/close_256px.png";
     closeIcon.alt = "Close";
     closeButton.appendChild(closeIcon);
 

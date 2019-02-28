@@ -1,7 +1,7 @@
 function saveCredentials(json, remember) {
     //Set defaults...
     cookie.defaults.secure = true;
-    cookie.defaults.domain = "www.startapped.com";
+    cookie.defaults.domain = "startapped.com";
 
 
     if (remember) {
@@ -33,7 +33,7 @@ function getCredentials() {
 }
 
 function removeCredentials() {
-    cookie.removeSpecific(['access', 'refresh', 'expire'], {domain: 'www.startapped.com', path: '/'});
+    cookie.removeSpecific(['access', 'refresh', 'expire'], {domain: 'startapped.com', path: '/'});
 }
 
 function initOnLandingPage() {
@@ -93,6 +93,39 @@ function initOnHub() {
                     showSnackbar(JSON.parse(jqXHR.responseText).message);
                     removeCredentials();
                     window.location.replace("/")
+                }
+            });
+        }
+    }
+}
+
+function initOnBlogPage() {
+    if (cookie.get("access") == null) {
+        //User is logged out
+        window.location.replace("https://www.startapped.com");
+    } else {
+        //Refresh auth if needed.
+        if (parseInt(getCredentials().expire) < Date().now) {
+            $.ajax({
+                url: "https://api.startapped.com/v1/auth/refresh",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization_Access": getCredentials().access,
+                    "Authorization_Refresh": getCredentials().refresh
+                },
+                method: "POST",
+                dataType: "json",
+                success: function (json, xhr) {
+                    if (xhr.status === 201) {
+                        //Save credentials
+                        removeCredentials();
+                        saveCredentials(json.credentials, true);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    showSnackbar(JSON.parse(jqXHR.responseText).message);
+                    removeCredentials();
+                    window.location.replace("https://www.startapped.com")
                 }
             });
         }

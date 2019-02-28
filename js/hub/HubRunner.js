@@ -14,10 +14,12 @@ function doLoadHub() {
     handleTypeChange(null);
 }
 
+// noinspection Duplicates
 function showPosts(json) {
     isGenerating = true; //Stop it from getting new data while generating.
     if (json.count <= 0) {
         keepChecking = false;
+        showSnackbar("No most posts!");
     } else {
         if (json.range.latest > 0) {
             timeIndex.latest = json.range.latest;

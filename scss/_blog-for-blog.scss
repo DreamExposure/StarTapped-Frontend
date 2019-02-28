@@ -1,0 +1,91 @@
+.blog-container {
+  position: relative;
+  display: inline-block;
+  width: 550px;
+  margin: 1rem;
+}
+
+.blog-header-img {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+.blog-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 2%;
+}
+
+.blog-profile-img {
+  position: absolute;
+  width: 8rem;
+  height: 8rem;
+  top: 200px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.blog-text-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 75px;
+}
+
+.blog-nsfw-badge {
+  position: absolute;
+
+  top: 200px;
+  left: 0;
+  margin: 1%;
+}
+
+.blog-18-only-badge {
+  position: absolute;
+  top: 200px;
+  left: 10%;
+  margin: 1%;
+}
+
+.blog-age-badge {
+  position: absolute;
+  left: 55%;
+  top: 235px;
+
+  margin: 1%;
+}
+
+.blog-title {
+  text-align: center;
+
+  width: inherit;
+  padding-left: .25rem;
+  padding-right: .25rem;
+}
+
+.blog-desc {
+  text-align: center;
+  line-height: 1rem;
+
+  width: inherit;
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+//Content alert stuffs
+.blog-content-alert-header {
+  text-align: center;
+  padding: 10px;
+
+  font-size: 35pt;
+
+  display: block;
+}
+
+.blog-content-alert-description {
+  text-align: center;
+  padding: 5px;
+
+  display: block;
+}

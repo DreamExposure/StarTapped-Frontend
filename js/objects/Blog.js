@@ -1,3 +1,4 @@
+//noinspection Duplicates
 function Blog() {
     this.id = "Unassigned";
 
