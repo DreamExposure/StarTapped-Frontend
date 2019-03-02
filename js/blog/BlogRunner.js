@@ -38,7 +38,7 @@ function showBlog() {
         desc.className = "blog-content-alert-description text-dark";
         desc.innerText = "This blog is marked as NSFW (Not Safe For Work). Please disable safe search to view this blog.";
         container.appendChild(desc);
-    } else if (!account.allowUnder18 && getAgeForBlog(account.birthday) < 18) {
+    } else if (!account.allowUnder18 && account.age < 18) {
         //User is under 18 and blog does not allow minors to view.
         isBlocking = true;
 
@@ -394,26 +394,14 @@ function showAge(ageElement) {
         dataType: "json",
         data: JSON.stringify(bodyRaw),
         success: function (json) {
-            let birth = json.account.birthday;
+            let blogOwner = new Account().fromJson(json.account);
 
-            ageElement.innerHTML = getAgeForBlog(birth).toString();
+            ageElement.innerHTML = blogOwner.age;
         },
         error: function (jqXHR, textStatus, errorThrown) {
             showSnackbar(JSON.parse(jqXHR.responseText).message);
         }
     })
-}
-
-//noinspection Duplicates
-function getAgeForBlog(dateString) {
-    let today = new Date();
-    let birthDate = new Date(dateString);
-    let age = today.getFullYear() - birthDate.getFullYear();
-    let m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-    }
-    return age;
 }
 
 window.onscroll = function () {

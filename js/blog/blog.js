@@ -391,9 +391,9 @@ function showAgeSelf(ageElement) {
 		method: "POST",
 		dataType: "json",
 		success: function (json) {
-			let birth = json.account.birthday;
+			let account = new Account().fromJson(json.account);
 
-			ageElement.innerHTML = getAge(birth).toString();
+			ageElement.innerText = account.age;
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
 			showSnackbar(JSON.parse(jqXHR.responseText).message);
