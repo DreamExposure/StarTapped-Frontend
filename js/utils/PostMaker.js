@@ -197,14 +197,13 @@ function generateTextPost(post, parent, showTopBar, showBottomBar, showTags) {
 
             if (tag.length > 0) {
 
-                let button = document.createElement("button");
+                let button = document.createElement("a");
                 button.className = "post-tag btn btn-info text-tag-color text-center";
                 button.innerText = "#" + tag;
                 tagsContainer.appendChild(button);
 
-                button.onclick = function (ignore) {
-                    //TODO: Handle tag click!!!!
-                }
+                button.target = "_blank";
+                button.href = encodeURI("https://www.startapped.com/search?tags=" + tag);
             }
         }
     }
@@ -341,14 +340,13 @@ function generateImagePost(post, parent, showTopBar, showBottomBar, showTags) {
 
             if (tag.length > 0) {
 
-                let button = document.createElement("button");
+                let button = document.createElement("a");
                 button.className = "post-tag btn btn-info text-tag-color text-center";
                 button.innerText = "#" + tag;
                 tagsContainer.appendChild(button);
 
-                button.onclick = function (ignore) {
-                    //TODO: Handle tag click!!!!
-                }
+                button.target = "_blank";
+                button.href = encodeURI("https://www.startapped.com/search?tags=" + tag);
             }
         }
     }
@@ -547,14 +545,13 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar, showTags) {
 
             if (tag.length > 0) {
 
-                let button = document.createElement("button");
+                let button = document.createElement("a");
                 button.className = "post-tag btn btn-info text-tag-color text-center";
                 button.innerText = "#" + tag;
                 tagsContainer.appendChild(button);
 
-                button.onclick = function (ignore) {
-                    //TODO: Handle tag click!!!!
-                }
+                button.target = "_blank";
+                button.href = encodeURI("https://www.startapped.com/search?tags=" + tag);
             }
         }
     }
@@ -698,14 +695,13 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar, showTags) {
 
             if (tag.length > 0) {
 
-                let button = document.createElement("button");
+                let button = document.createElement("a");
                 button.className = "post-tag btn btn-info text-tag-color text-center";
                 button.innerText = "#" + tag;
                 tagsContainer.appendChild(button);
 
-                button.onclick = function (ignore) {
-                    //TODO: Handle tag click!!!!
-                }
+                button.target = "_blank";
+                button.href = encodeURI("https://www.startapped.com/search?tags=" + tag);
             }
         }
     }
