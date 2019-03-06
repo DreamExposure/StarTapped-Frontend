@@ -221,7 +221,7 @@ function showPosts(json) {
         for (let i = 0; i < posts.length; i++) {
             let p = posts[i];
 
-            if (p.timestamp >= timeIndex.oldest && p.timestamp <= timeIndex.latest) {
+            if (p.timestamp >= timeIndex.oldest && p.timestamp <= timeIndex.latest && p.originBlog.id === blog.id) {
                 //Add posts to the hub view, at the bottom...
                 if (p.parent !== "Unassigned") {
                     rootLayout.appendChild(generatePostTree(p, posts));

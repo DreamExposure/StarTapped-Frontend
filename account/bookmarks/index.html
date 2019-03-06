@@ -34,11 +34,10 @@
     <meta name="msapplication-config" content="/img/favicons/browserconfig.xml">
     <!-- ****** faviconit.com favicons ****** -->
 
-    <title>Hub :: StarTapped</title>
+    <title>Bookmarks :: StarTapped</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 
     <!-- Custom fonts for this template -->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -47,13 +46,11 @@
           rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template -->
+    <link href="/css/account-page.min.css" rel="stylesheet">
     <link href="/css/hub-page.min.css" rel="stylesheet">
     <link href="/css/snackbar.min.css" rel="stylesheet">
 
     <!--JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
     <script src="/js/objects/Account.js"></script>
     <script src="/js/objects/Blog.js"></script>
     <script src="/js/objects/Post.js"></script>
@@ -63,28 +60,33 @@
     <script src="/js/account/logout.js"></script>
     <script src="/js/account/auth.js"></script>
 
-    <script src="/js/hub/HubRunner.js"></script>
+    <script src="/js/hub/BookmarkRunner.js"></script>
 
     <script src="/js/utils/media.js"></script>
     <script src="/js/utils/PostMaker.js"></script>
     <script src="/js/utils/snackbar.js"></script>
 
     <script src="/vendor/cookie/cookie.min.js"></script>
+
+    <!--Externally Hosted-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </head>
 
-<body onload="doLoadHub()" class="bg-dark">
+<body onload="doLoadOnBookmarks()" class="bg-dark">
 
 <!-- Navigation -->
-<nav class="navbar navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-dark bg-dark sticky-top border-bottom">
     <div class="container">
         <a class="navbar-brand" href="/">StarTapped</a>
-        <a class="btn btn-light" href="/hub">Hub</a>
+        <a class="btn btn-primary" href="/hub">Hub</a>
         <a class="btn btn-primary" href="/search">Search</a>
         <a class="btn btn-primary" href="/explore">Explore</a>
-        <a class="btn btn-primary" href="/account">Account</a>
+        <a class="btn btn-light" href="/account">Account</a>
         <button class="btn btn-warning" data-toggle="modal" data-target="#modal-sign-out">Sign Out</button>
     </div>
 </nav>
+
 
 <!--Posts-->
 <div class="post-main-container text-center">
@@ -95,6 +97,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Footer -->
 <footer class="footer bg-dark">
@@ -154,7 +157,7 @@
                 <h4 class="modal-title text-light">Are you sure you want to sign out?</h4>
             </div>
             <div class="modal-body">
-                <form style="text-align: center;" id="sign-in-form" action="javascript:logOut()">
+                <form style="text-align: center;" id="sign-out-form" action="javascript:logOut()">
 
                     <input type="submit" class="btn btn-large btn-danger" value="Yes, Sign Out">
                 </form>
@@ -166,106 +169,10 @@
         </div>
     </div>
 </div>
-<!--Post create modal-->
-<div class="modal fade" id="modal-post-create" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content bg-dark">
-            <div class="modal-header">
-                <h4 class="modal-title text-light">Create New Post</h4>
-            </div>
-            <div class="modal-body">
-                <form style="text-align: center;" id="post-create-form" action="javascript:createNewPost()">
-                    <div class="create-post-selection-container">
-                        <img src="https://cdn.startapped.com/img/default/profile.jpg"
-                             class="create-post-selection-image" alt="selected blog icon" id="create-post-blog-icon">
 
-                        <label class="create-post-selection-drop-label text-light">Select Blog
-                            <select class="create-post-selection-drop" id="create-post-blog-select"
-                                    onchange="onBlogSelectChange()">
-                                <!--Options will be added in JS-->
-                            </select>
-                        </label>
-                    </div>
-                    <br>
-                    <!--Select post type-->
-                    <div class="create-post-type-container">
-                        <p class="text-light text-left">Post Type</p>
-                        <div class="btn-group btn-group-toggle create-post-type-toggle" data-toggle="buttons"
-                             id="create-post-type-toggle">
-                            <label class="btn btn-primary active" id="text-option-label"
-                                   onclick="handleTypeChange(this)">
-                                <input type="radio" autocomplete="off">Text
-                            </label>
-                            <label class="btn btn-primary" id="image-option-label" onclick="handleTypeChange(this)">
-                                <input type="radio" autocomplete="off">Image
-                            </label>
-                            <label class="btn btn-primary" id="audio-option-label" onclick="handleTypeChange(this)">
-                                <input type="radio" autocomplete="off">Audio
-                            </label>
-                            <label class="btn btn-primary" id="video-option-label" onclick="handleTypeChange(this)">
-                                <input type="radio" autocomplete="off">Video
-                            </label>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <!--File inputs-->
-                    <label class="create-post-file-input text-light" id="post-create-image-label">Image File
-                        <input type="file" id="post-create-image-file"
-                               onchange="encodeFileAsBase64WithId(this, 'post-create-media')">
-                    </label>
-                    <label class="create-post-file-input text-light" id="post-create-audio-label">Audio File
-                        <input type="file" id="post-create-audio-file"
-                               onchange="encodeFileAsBase64WithId(this, 'post-create-media')">
-                    </label>
-                    <label class="create-post-file-input text-light" id="post-create-video-label">Video File
-                        <input type="file" id="post-create-video-file"
-                               onchange="encodeFileAsBase64WithId(this, 'post-create-media')">
-                    </label>
-                    <br>
-                    <br>
-                    <!--Post title-->
-                    <label class="text-light create-post-title-label">Post Title
-                        <br>
-                        <textarea class="create-post-title-box" rows="2" placeholder="Title, if you want one"
-                                  id="create-post-title"></textarea>
-                    </label>
-                    <br>
-                    <br>
-                    <!--Post body-->
-                    <label class="text-light create-post-body-label">Post Title
-                        <br>
-                        <textarea class="create-post-body-box" rows="4" placeholder="Go on, say something"
-                                  id="create-post-body"></textarea>
-                    </label>
-                    <br>
-                    <br>
-                    <!--Tags-->
-                    <label class="text-light create-post-tags-label">Post Tags
-                        <br>
-                        <textarea class="create-post-tags-box" rows="2"
-                                  placeholder="Tags, if you want any, comma separated" id="create-post-tags"></textarea>
-                    </label>
-                    <br>
-                    <br>
-                    <!--Submit button-->
-                    <input type="submit" class="btn btn-large btn-primary" value="Create Post!">
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><img
-                        src="/img/icon/close_256px.png" alt="close" class="icon-custom-small"></button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!--Snackbar-->
 <div id="snackbar"></div>
-
-<!--Floating Action Button-->
-<button class="floating bg-primary" data-toggle="modal" data-target="#modal-post-create"></button>
 
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
