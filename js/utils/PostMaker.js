@@ -183,7 +183,48 @@ function generateTextPost(post, parent, showTopBar, showBottomBar, showTags) {
         source.target = "_blank";
 
         bookmark.onclick = function (ignore) {
-            //TODO: Handle bookmark!!!!
+            let bodyRaw = {
+                "post_id": post.id
+            };
+            if (post.bookmarked) {
+                $.ajax({
+                    url: "https://api.startapped.com/v1/post/bookmark/remove",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization_Access": getCredentials().access,
+                        "Authorization_Refresh": getCredentials().refresh
+                    },
+                    method: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(bodyRaw),
+                    success: function (json) {
+                        post.bookmarked = false;
+                        showSnackbar(json.message);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        showSnackbar(JSON.parse(jqXHR.responseText).message);
+                    }
+                });
+            } else {
+                $.ajax({
+                    url: "https://api.startapped.com/v1/post/bookmark/add",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization_Access": getCredentials().access,
+                        "Authorization_Refresh": getCredentials().refresh
+                    },
+                    method: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(bodyRaw),
+                    success: function (json) {
+                        post.bookmarked = true;
+                        showSnackbar(json.message);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        showSnackbar(JSON.parse(jqXHR.responseText).message);
+                    }
+                });
+            }
         };
 
         reblog.onclick = function (ignore) {
@@ -326,7 +367,48 @@ function generateImagePost(post, parent, showTopBar, showBottomBar, showTags) {
         source.target = "_blank";
 
         bookmark.onclick = function (ignore) {
-            //TODO: Handle bookmark!!!!
+            let bodyRaw = {
+                "post_id": post.id
+            };
+            if (post.bookmarked) {
+                $.ajax({
+                    url: "https://api.startapped.com/v1/post/bookmark/remove",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization_Access": getCredentials().access,
+                        "Authorization_Refresh": getCredentials().refresh
+                    },
+                    method: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(bodyRaw),
+                    success: function (json) {
+                        post.bookmarked = false;
+                        showSnackbar(json.message);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        showSnackbar(JSON.parse(jqXHR.responseText).message);
+                    }
+                });
+            } else {
+                $.ajax({
+                    url: "https://api.startapped.com/v1/post/bookmark/add",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization_Access": getCredentials().access,
+                        "Authorization_Refresh": getCredentials().refresh
+                    },
+                    method: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(bodyRaw),
+                    success: function (json) {
+                        post.bookmarked = true;
+                        showSnackbar(json.message);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        showSnackbar(JSON.parse(jqXHR.responseText).message);
+                    }
+                });
+            }
         };
 
         reblog.onclick = function (ignore) {
@@ -531,7 +613,48 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar, showTags) {
         source.target = "_blank";
 
         bookmark.onclick = function (ignore) {
-            //TODO: Handle bookmark!!!!
+            let bodyRaw = {
+                "post_id": post.id
+            };
+            if (post.bookmarked) {
+                $.ajax({
+                    url: "https://api.startapped.com/v1/post/bookmark/remove",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization_Access": getCredentials().access,
+                        "Authorization_Refresh": getCredentials().refresh
+                    },
+                    method: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(bodyRaw),
+                    success: function (json) {
+                        post.bookmarked = false;
+                        showSnackbar(json.message);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        showSnackbar(JSON.parse(jqXHR.responseText).message);
+                    }
+                });
+            } else {
+                $.ajax({
+                    url: "https://api.startapped.com/v1/post/bookmark/add",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization_Access": getCredentials().access,
+                        "Authorization_Refresh": getCredentials().refresh
+                    },
+                    method: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(bodyRaw),
+                    success: function (json) {
+                        post.bookmarked = true;
+                        showSnackbar(json.message);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        showSnackbar(JSON.parse(jqXHR.responseText).message);
+                    }
+                });
+            }
         };
 
         reblog.onclick = function (ignore) {
@@ -566,7 +689,6 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar, showTags) {
 }
 
 // noinspection Duplicates
-
 function generateVideoPost(post, parent, showTopBar, showBottomBar, showTags) {
     //Load views
     let root = document.createElement("div");
@@ -681,7 +803,48 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar, showTags) {
         source.target = "_blank";
 
         bookmark.onclick = function (ignore) {
-            //TODO: Handle bookmark!!!!
+            let bodyRaw = {
+                "post_id": post.id
+            };
+            if (post.bookmarked) {
+                $.ajax({
+                    url: "https://api.startapped.com/v1/post/bookmark/remove",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization_Access": getCredentials().access,
+                        "Authorization_Refresh": getCredentials().refresh
+                    },
+                    method: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(bodyRaw),
+                    success: function (json) {
+                        post.bookmarked = false;
+                        showSnackbar(json.message);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        showSnackbar(JSON.parse(jqXHR.responseText).message);
+                    }
+                });
+            } else {
+                $.ajax({
+                    url: "https://api.startapped.com/v1/post/bookmark/add",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization_Access": getCredentials().access,
+                        "Authorization_Refresh": getCredentials().refresh
+                    },
+                    method: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(bodyRaw),
+                    success: function (json) {
+                        post.bookmarked = true;
+                        showSnackbar(json.message);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        showSnackbar(JSON.parse(jqXHR.responseText).message);
+                    }
+                });
+            }
         };
 
         reblog.onclick = function (ignore) {

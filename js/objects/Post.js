@@ -16,6 +16,7 @@ function Post() {
     this.nsfw = false;
 
     this.parent = "Unassigned";
+    this.bookmarked = false;
 
     this.tags = [];
 
@@ -37,7 +38,8 @@ function Post() {
             "title": this.title,
             "body": this.body,
             "tags": this.tags,
-            "nsfw": this.nsfw
+            "nsfw": this.nsfw,
+            "bookmarked": this.bookmarked
         };
         if (this.parent !== "Unassigned") {
             json.parent = this.parent;
@@ -70,6 +72,8 @@ function Post() {
         if (json.hasOwnProperty('parent')) {
             this.parent = json.parent;
         }
+
+        this.bookmarked = json.bookmarked;
 
         if (json.hasOwnProperty('tags')) {
             this.tags = json.tags
