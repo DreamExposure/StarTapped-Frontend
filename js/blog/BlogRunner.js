@@ -38,7 +38,7 @@ function showBlog() {
         desc.className = "blog-content-alert-description text-dark";
         desc.innerText = "This blog is marked as NSFW (Not Safe For Work). Please disable safe search to view this blog.";
         container.appendChild(desc);
-    } else if (!account.allowUnder18 && account.age < 18) {
+    } else if (!blog.allowUnder18 && account.age < 18) {
         //User is under 18 and blog does not allow minors to view.
         isBlocking = true;
 
