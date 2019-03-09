@@ -202,7 +202,7 @@ function createNewPost() {
     }
 
 
-    //TODO: Add loading icon and disable interaction...
+    showLoading();
 
     $.ajax({
         url: "https://api.startapped.com/v1/post/create",
@@ -215,7 +215,7 @@ function createNewPost() {
         dataType: "json",
         data: JSON.stringify(bodyRaw),
         success: function (json) {
-            //TODO: Remove loading icon and enabled interaction...
+            hideLoading();
 
             //Close modal...
             $('#modal-post-create').modal('hide');
@@ -232,9 +232,10 @@ function createNewPost() {
             removeEncodedResults("post-create-media");
         },
         error: function (jqXHR, textStatus, errorThrown) {
+            hideLoading();
+
             showSnackbar(JSON.parse(jqXHR.responseText).message);
 
-            //TODO: Remove loading icon and enabled interaction...
         }
     })
 
