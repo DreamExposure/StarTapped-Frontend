@@ -22,24 +22,24 @@ function generatePostTree(lowest, posts) {
 
     let first = null;
     for (let i = 0; i < postsInOrder.length; i++) {
-       let p = postsInOrder[i];
-       let v = null;
+        let p = postsInOrder[i];
+        let v = null;
 
-       if (p.postType === "TEXT") {
-           v = generateTextPost(p, null, false, false, false);
-       } else if (p.postType === "IMAGE") {
-           v = generateImagePost(p, null, false, false, false);
-       } else if (p.postType === "AUDIO") {
-           v = generateAudioPost(p, null, false, false, false);
-       } else if (p.postType === "VIDEO") {
-           v = generateVideoPost(p, null, false, false, false);
-       }
+        if (p.postType === "TEXT") {
+            v = generateTextPost(p, null, false, false, false);
+        } else if (p.postType === "IMAGE") {
+            v = generateImagePost(p, null, false, false, false);
+        } else if (p.postType === "AUDIO") {
+            v = generateAudioPost(p, null, false, false, false);
+        } else if (p.postType === "VIDEO") {
+            v = generateVideoPost(p, null, false, false, false);
+        }
 
-       if (first == null) {
-           first = v;
-       }
+        if (first == null) {
+            first = v;
+        }
 
-       root.appendChild(v); //Don't think I need to add linebreaks here...
+        root.appendChild(v); //Don't think I need to add linebreaks here...
     }
 
     let child = null;
@@ -685,6 +685,13 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar, showTags) {
     audio.setAttribute("loop", "");
     audioSrc.src = post.audio.url;
 
+    //If post isn't visible, make sure music isn't still playing...
+    document.addEventListener('scroll', function () {
+        if (!audio.paused && !isPostVisible(root, false)) {
+            audio.pause();
+        }
+    }, true);
+
     return root;
 }
 
@@ -874,6 +881,13 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar, showTags) {
     video.setAttribute("loop", "");
     videoSrc.src = post.video.url;
 
+    //If post isn't visible, make sure video isn't still playing...
+    document.addEventListener('scroll', function () {
+        if (!video.paused && !isPostVisible(root, false)) {
+            video.pause();
+        }
+    }, true);
+
     return root;
 }
 
@@ -888,7 +902,7 @@ function getPostFromArray(posts, id) {
 }
 
 function uuid() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         // noinspection PointlessBitwiseExpressionJS
         let r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
@@ -898,7 +912,20 @@ function uuid() {
 function textWithLinks(text) {
     let urlRegex = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm;
 
-    return text.replace(urlRegex, function(url) {
-       return '<a href="' + url + '" target="_blank" class="text-link-color">' + url + "</a>";
+    return text.replace(urlRegex, function (url) {
+        return '<a href="' + url + '" target="_blank" class="text-link-color">' + url + "</a>";
     });
+}
+
+function isPostVisible(el, fullyInView) {
+    let pageTop = $(window).scrollTop();
+    let pageBottom = pageTop + $(window).height();
+    let elementTop = $(el).offset().top;
+    let elementBottom = elementTop + $(el).height();
+
+    if (fullyInView === true) {
+        return ((pageTop < elementTop) && (pageBottom > elementBottom));
+    } else {
+        return ((elementTop <= pageBottom) && (elementBottom >= pageTop));
+    }
 }
