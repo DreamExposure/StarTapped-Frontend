@@ -137,14 +137,14 @@ function getAllBlogsSelf() {
 
 				//Blog title
 				let titleLabel = document.createElement("label");
-				titleLabel.className = "text-light";
+				titleLabel.className = "text-light edit-blog-title-label";
 				titleLabel.innerHTML = "Title";
 				titleLabel.appendChild(document.createElement("br"));
 				form.appendChild(titleLabel);
-				let titleEdit = document.createElement("input");
-				titleEdit.className = "rounded";
+				let titleEdit = document.createElement("textarea");
+				titleEdit.className = "edit-blog-title-box";
 				titleEdit.name = "title";
-				titleEdit.type = "text";
+				titleEdit.rows = 2;
 				titleEdit.value = blog.name;
 				titleEdit.id = "edit-title-" + blog.id;
 				titleLabel.appendChild(titleEdit);
@@ -152,14 +152,14 @@ function getAllBlogsSelf() {
 
 				//Blog Description
 				let descriptionLabel = document.createElement("label");
-				descriptionLabel.className = "text-light";
+				descriptionLabel.className = "text-light edit-blog-desc-label";
 				descriptionLabel.innerHTML = "Description";
 				descriptionLabel.appendChild(document.createElement("br"));
 				form.appendChild(descriptionLabel);
-				let description = document.createElement("input");
-				description.className = "rounded";
+				let description = document.createElement("textarea");
+				description.className = "edit-blog-desc-box";
 				description.name = "edit-description";
-				description.type = "text";
+				description.rows = 4;
 				description.value = blog.description;
 				description.id = "edit-description-" + blog.id;
 				descriptionLabel.appendChild(description);
