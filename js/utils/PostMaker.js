@@ -128,7 +128,11 @@ function generateTextPost(post, parent, showTopBar, showBottomBar, showTags) {
     blogUrlLatest.href = "#";
     blogUrlSecond.href = "#";
     source.href = "#";
-    bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
+    if (post.bookmarked) {
+        bookmark.src = "https://www.startapped.com/img/icon/bookmark_primary_256px.png";
+    } else {
+        bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
+    }
     reblog.src = "https://www.startapped.com/img/icon/reblog_256px.png";
 
 
@@ -187,6 +191,7 @@ function generateTextPost(post, parent, showTopBar, showBottomBar, showTags) {
                 "post_id": post.id
             };
             if (post.bookmarked) {
+                bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
                 $.ajax({
                     url: "https://api.startapped.com/v1/post/bookmark/remove",
                     headers: {
@@ -206,6 +211,7 @@ function generateTextPost(post, parent, showTopBar, showBottomBar, showTags) {
                     }
                 });
             } else {
+                bookmark.src = "https://www.startapped.com/img/icon/bookmark_primary_256px.png";
                 $.ajax({
                     url: "https://api.startapped.com/v1/post/bookmark/add",
                     headers: {
@@ -309,7 +315,11 @@ function generateImagePost(post, parent, showTopBar, showBottomBar, showTags) {
     blogUrlLatest.href = "#";
     blogUrlSecond.href = "#";
     source.href = "#";
-    bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
+    if (post.bookmarked) {
+        bookmark.src = "https://www.startapped.com/img/icon/bookmark_primary_256px.png";
+    } else {
+        bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
+    }
     reblog.src = "https://www.startapped.com/img/icon/reblog_256px.png";
 
 
@@ -371,6 +381,7 @@ function generateImagePost(post, parent, showTopBar, showBottomBar, showTags) {
                 "post_id": post.id
             };
             if (post.bookmarked) {
+                bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
                 $.ajax({
                     url: "https://api.startapped.com/v1/post/bookmark/remove",
                     headers: {
@@ -390,6 +401,7 @@ function generateImagePost(post, parent, showTopBar, showBottomBar, showTags) {
                     }
                 });
             } else {
+                bookmark.src = "https://www.startapped.com/img/icon/bookmark_primary_256px.png";
                 $.ajax({
                     url: "https://api.startapped.com/v1/post/bookmark/add",
                     headers: {
@@ -557,7 +569,11 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar, showTags) {
     blogUrlLatest.href = "#";
     blogUrlSecond.href = "#";
     source.href = "#";
-    bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
+    if (post.bookmarked) {
+        bookmark.src = "https://www.startapped.com/img/icon/bookmark_primary_256px.png";
+    } else {
+        bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
+    }
     reblog.src = "https://www.startapped.com/img/icon/reblog_256px.png";
     audioSrc.innerText = "Your browser does not support the Audio Tag";
 
@@ -617,6 +633,7 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar, showTags) {
                 "post_id": post.id
             };
             if (post.bookmarked) {
+                bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
                 $.ajax({
                     url: "https://api.startapped.com/v1/post/bookmark/remove",
                     headers: {
@@ -636,6 +653,7 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar, showTags) {
                     }
                 });
             } else {
+                bookmark.src = "https://www.startapped.com/img/icon/bookmark_primary_256px.png";
                 $.ajax({
                     url: "https://api.startapped.com/v1/post/bookmark/add",
                     headers: {
@@ -754,7 +772,11 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar, showTags) {
     blogUrlLatest.href = "#";
     blogUrlSecond.href = "#";
     source.href = "#";
-    bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
+    if (post.bookmarked) {
+        bookmark.src = "https://www.startapped.com/img/icon/bookmark_primary_256px.png";
+    } else {
+        bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
+    }
     reblog.src = "https://www.startapped.com/img/icon/reblog_256px.png";
     videoSrc.innerText = "Your browser does not support the Video Tag";
 
@@ -814,6 +836,7 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar, showTags) {
                 "post_id": post.id
             };
             if (post.bookmarked) {
+                bookmark.src = "https://www.startapped.com/img/icon/bookmark_256px.png";
                 $.ajax({
                     url: "https://api.startapped.com/v1/post/bookmark/remove",
                     headers: {
@@ -833,6 +856,7 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar, showTags) {
                     }
                 });
             } else {
+                bookmark.src = "https://www.startapped.com/img/icon/bookmark_primary_256px.png";
                 $.ajax({
                     url: "https://api.startapped.com/v1/post/bookmark/add",
                     headers: {
