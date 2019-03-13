@@ -213,6 +213,35 @@ h6 {
     box-sizing: border-box;
 }
 
+.following-main-container {
+    padding-bottom: inherit;
+}
+
+.following-container {
+    position: relative;
+    display: inline-block;
+    width: 550px;
+    height: 50px;
+    margin: 1rem;
+    overflow: hidden;
+}
+
+.following-blog-icon {
+    display: inline-block;
+    height: 50px;
+    float: left;
+}
+
+.following-blog-link {
+    display: inline-block;
+    height: 50px;
+    float: left;
+    padding-left: 15px;
+    text-align: left;
+    -webkit-transform: translate(0, 25%);
+    transform: translate(0, 25%);
+}
+
 footer.footer {
   position: absolute;
   right: 0;
