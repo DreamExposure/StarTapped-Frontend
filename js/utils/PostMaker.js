@@ -146,8 +146,8 @@ function generateTextPost(post, parent, showTopBar, showBottomBar, showTags) {
         blogUrlSecond.style.display = 'none';
     }
 
-    postTitle.innerHTML = textWithLinks(post.title);
-    postBody.innerHTML = textWithLinks(post.body);
+    postTitle.innerHTML = textWithLinks(post.title).replace(/(?:\r\n|\r|\n)/g, '<br>');
+    postBody.innerHTML = textWithLinks(post.body).replace(/(?:\r\n|\r|\n)/g, '<br>');
 
     source.innerText = "Source: " + post.originBlog.baseUrl;
 
@@ -333,8 +333,8 @@ function generateImagePost(post, parent, showTopBar, showBottomBar, showTags) {
         blogUrlSecond.style.display = 'none';
     }
 
-    postTitle.innerHTML = textWithLinks(post.title);
-    postBody.innerHTML = textWithLinks(post.body);
+    postTitle.innerHTML = textWithLinks(post.title).replace(/(?:\r\n|\r|\n)/g, '<br>');
+    postBody.innerHTML = textWithLinks(post.body).replace(/(?:\r\n|\r|\n)/g, '<br>');
 
     source.innerText = "Source: " + post.originBlog.baseUrl;
 
@@ -588,8 +588,8 @@ function generateAudioPost(post, parent, showTopBar, showBottomBar, showTags) {
         blogUrlSecond.style.display = 'none';
     }
 
-    postTitle.innerHTML = textWithLinks(post.title);
-    postBody.innerHTML = textWithLinks(post.body);
+    postTitle.innerHTML = textWithLinks(post.title).replace(/(?:\r\n|\r|\n)/g, '<br>');
+    postBody.innerHTML = textWithLinks(post.body).replace(/(?:\r\n|\r|\n)/g, '<br>');
 
     source.innerText = "Source: " + post.originBlog.baseUrl;
 
@@ -791,8 +791,8 @@ function generateVideoPost(post, parent, showTopBar, showBottomBar, showTags) {
         blogUrlSecond.style.display = 'none';
     }
 
-    postTitle.innerHTML = textWithLinks(post.title);
-    postBody.innerHTML = textWithLinks(post.body);
+    postTitle.innerHTML = textWithLinks(post.title).replace(/(?:\r\n|\r|\n)/g, '<br>');
+    postBody.innerHTML = textWithLinks(post.body).replace(/(?:\r\n|\r|\n)/g, '<br>');
 
     source.innerText = "Source: " + post.originBlog.baseUrl;
 

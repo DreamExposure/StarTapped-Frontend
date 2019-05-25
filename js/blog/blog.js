@@ -91,13 +91,13 @@ function getAllBlogsSelf() {
 				//Blog title
 				let title = document.createElement("h3");
 				title.className = "blog-title text-primary font-weight-bold";
-				title.innerHTML = blog.name;
+                title.innerHTML = blog.name.replace(/(?:\r\n|\r|\n)/g, '<br>');
 				container.appendChild(title);
 
 				//Blog Description
 				let desc = document.createElement("p");
 				desc.className = "blog-desc text-dark";
-				desc.innerHTML = blog.description;
+                desc.innerHTML = blog.description.replace(/(?:\r\n|\r|\n)/g, '<br>');
 				container.appendChild(desc);
 
 				//Create modal for editing
