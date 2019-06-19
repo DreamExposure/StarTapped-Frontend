@@ -1,0 +1,20 @@
+@import "mixins";
+@import "variables";
+
+.call-to-action {
+  position: relative;
+  background: $gray-800 url('../../assets/img/landing/bg-masthead.jpg') no-repeat center center;
+  @include background-cover;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+
+  .overlay {
+    position: absolute;
+    background-color: $gray-900;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+  }
+}

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--Meta Stuffs-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="StarTapped :: A Blogging Platform For All">
+    <meta property="og:title" content="StarTapped"/>
+    <meta property="og:url" content="https://www.dreamexposure.org"/>
+    <meta property="og:description" content="StarTapped :: A Blogging Platform For All"/>
+    <meta property="og:image" content="/img/bg-masthead.jpg">
+
+    <!-- ****** faviconit.com favicons ****** -->
+    <link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+    <link rel="icon" sizes="16x16 32x32 64x64" href="/assets/img/favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="196x196" href="/assets/img/favicons/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="160x160" href="/assets/img/favicons/favicon-160.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicons/favicon-96.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/assets/img/favicons/favicon-64.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16.png">
+    <link rel="apple-touch-icon" href="/assets/img/favicons/favicon-57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicons/favicon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicons/favicon-72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/favicon-144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicons/favicon-60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicons/favicon-120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicons/favicon-76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicons/favicon-152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/favicon-180.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="/img/favicons/favicon-144.png">
+    <meta name="msapplication-config" content="/img/favicons/browserconfig.xml">
+    <!-- ****** faviconit.com favicons ****** -->
+
+    <title>Account :: StarTapped</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+          rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="/assets/css/account-page.min.css" rel="stylesheet">
+    <link href="/assets/css/snackbar.min.css" rel="stylesheet">
+
+    <!--JS-->
+    <script src="/src/js/objects/Account.js"></script>
+    <script src="/src/js/objects/Blog.js"></script>
+    <script src="/src/js/objects/UploadedFile.js"></script>
+
+    <script src="/src/js/account/logout.js"></script>
+    <script src="/src/js/account/auth.js"></script>
+    <script src="/src/js/account/account.js"></script>
+
+    <script src="/src/js/blog/blog.js"></script>
+    <script src="/src/js/utils/snackbar.js"></script>
+    <script src="/src/js/utils/media.js"></script>
+    <script src="/vendor/cookie/cookie.min.js"></script>
+
+    <!--Externally Hosted-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</head>
+
+<body onload="initOnLoad()" class="bg-dark">
+<noscript>Sorry, but JavaScript is needed to tap into the stars!</noscript>
+
+<!-- Navigation -->
+<nav class="navbar navbar-dark bg-dark sticky-top border-bottom">
+    <div class="container">
+        <a class="navbar-brand" href="/">StarTapped</a>
+        <a class="btn btn-primary" href="/hub">Hub</a>
+        <a class="btn btn-primary" href="/search">Search</a>
+        <a class="btn btn-primary" href="/explore">Explore</a>
+        <a class="btn btn-light" href="/account">Account</a>
+        <button class="btn btn-warning" data-toggle="modal" data-target="#modal-sign-out">Sign Out</button>
+    </div>
+</nav>
+
+<!--Extra nav-->
+<div>
+    <div class="container">
+        <a class="btn btn-primary" href="bookmarks">Bookmarks</a>
+        <a class="btn btn-primary" href="following">Following</a>
+    </div>
+</div>
+
+<!--Account Settings-->
+<div>
+    <div class="container text-center">
+        <h2 class="text-light">Account Settings</h2>
+        <br>
+        <button class="btn btn-warning" data-toggle="modal" data-target="#modal-update-password">Update Password
+        </button>
+        <button class="btn btn-warning" data-toggle="modal" data-target="#modal-update-email">Update Email</button>
+        <br>
+        <label class="text-light">Use Safe Search
+            <input type="checkbox" class="rounded" id="update-safe-search" onclick="updateSafeSearch()">
+        </label>
+    </div>
+</div>
+
+<!--Blogs-->
+<div class="blog-main-container">
+    <div class="container text-center">
+        <h2 class="text-light">Your Blogs</h2>
+        <div>
+            <div id="blog-container" class="text-center row">
+
+            </div>
+            <br>
+            <br>
+            <div class="text-center row">
+                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-create-blog">Create New
+                    Blog!
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item">
+                        <a class="text-link-color underline-solid" href="https://www.dreamexposure.org/contact"
+                           target="_blank">Contact</a>
+                    </li>
+                    <li class="list-inline-item text-light">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a class="text-link-color underline-solid" href="/policy/tos">Terms of Service</a>
+                    </li>
+                    <li class="list-inline-item text-light">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a class="text-link-color underline-solid" href="/policy/privacy">Privacy Policy</a>
+                    </li>
+                    <li class="list-inline-item text-light">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a class="text-link-color underline-solid" href="https://www.dreamexposure.org" target="_blank">DreamExposure</a>
+                    </li>
+                </ul>
+                <p class="text-muted small mb-4 mb-lg-0">&copy; DreamExposure Studios 2018. All Rights Reserved.</p>
+            </div>
+            <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item mr-3">
+                        <a href="https://github.com/DreamExposure" target="_blank">
+                            <i class="fab fa-github fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <i class="fab fa-instagram fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!--Modals-->
+<!--Sign out modal-->
+<div class="modal fade" id="modal-sign-out" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h4 class="modal-title text-light">Are you sure you want to sign out?</h4>
+            </div>
+            <div class="modal-body">
+                <form style="text-align: center;" id="sign-out-form" action="javascript:logOut()">
+
+                    <input type="submit" class="btn btn-large btn-danger" value="Yes, Sign Out">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><img
+                        src="/assets/img/icon/close_256px.png" alt="close" class="icon-custom-small"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Update password modal-->
+<div class="modal fade" id="modal-update-password" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h4 class="modal-title text-light">Update Password</h4>
+            </div>
+            <div class="modal-body">
+                <form style="text-align: center;" id="update-password-form" action="javascript:updatePassword()">
+                    <label>
+                        <input class="rounded" name="old-password" type="password" id="update-password-current"
+                               required="required" placeholder="Current Password">
+                    </label>
+                    <br>
+                    <label>
+                        <input class="rounded" name="new-password" type="password" id="update-password-new"
+                               required="required" placeholder="New Password">
+                    </label>
+                    <br>
+                    <label>
+                        <input class="rounded" name="new-password-retype" type="password"
+                               id="update-password-new-retype" required="required" placeholder="Retype New Password"
+                               onchange="checkPasswordValidity(this)">
+                    </label>
+                    <br>
+                    <div class="text-center">
+                        <div class="g-cap" id="update-password-recap"></div>
+                    </div>
+                    <input type="submit" class="btn btn-large btn-danger" value="Update">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><img
+                        src="/assets/img/icon/close_256px.png" alt="close" class="icon-custom-small"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Update email modal-->
+<div class="modal fade" id="modal-update-email" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h4 class="modal-title text-light">Update Email</h4>
+            </div>
+            <div class="modal-body">
+                <form style="text-align: center;" id="update-email-form" action="javascript:updateEmail()">
+                    <label>
+                        <input class="rounded" name="email" type="email" id="update-email-email" required="required"
+                               placeholder="New Email">
+                    </label>
+                    <br>
+                    <label>
+                        <input class="rounded" name="password" type="password" id="update-email-password"
+                               required="required" placeholder="Password">
+                    </label>
+                    <br>
+                    <div class="text-center">
+                        <div class="g-cap" id="update-email-recap"></div>
+                    </div>
+                    <input type="submit" class="btn btn-large btn-danger" value="Update">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><img
+                        src="/assets/img/icon/close_256px.png" alt="close" class="icon-custom-small"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Create Blog Modal-->
+<div class="modal fade" id="modal-create-blog" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h4 class="modal-title text-light">Create New Blog</h4>
+            </div>
+            <div class="modal-body">
+                <form style="text-align: center;" id="create-blog-form" action="javascript:createNewBlog(2)">
+                    <label class="text-center text-light">Blog URL (Ex. my-cool-blog.startapped.com)
+                        <input class="rounded" name="url" type="text" id="blog-create-url" required="required"
+                               placeholder="my-cool-blog">
+                    </label>
+                    <br>
+                    <div class="text-center">
+                        <div class="g-cap" id="create-blog-recap"></div>
+                    </div>
+                    <input type="submit" class="btn btn-large btn-danger" value="Create Blog!">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><img
+                        src="/assets/img/icon/close_256px.png" alt="close" class="icon-custom-small"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Loading Modal-->
+<div class="modal fade loading-modal" data-backdrop="static" data-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="width: 48px">
+            <span class="fa fa-spinner fa-spin fa-3x text-primary"></span>
+        </div>
+    </div>
+</div>
+
+<!--Snackbar-->
+<div id="snackbar"></div>
+
+<script type="text/javascript">
+    var CaptchaCallback = function () {
+        grecaptcha.render('update-password-recap', {'sitekey': '6LfdUYAUAAAAAJwkUcp3WbCVoQIyFAefKmmX7WLv'});
+        grecaptcha.render('update-email-recap', {'sitekey': '6LfdUYAUAAAAAJwkUcp3WbCVoQIyFAefKmmX7WLv'});
+        grecaptcha.render('create-blog-recap', {'sitekey': '6LfdUYAUAAAAAJwkUcp3WbCVoQIyFAefKmmX7WLv'});
+    };
+</script>
+
+<!-- Bootstrap core JavaScript -->
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" async
+        defer></script>
+</body>
+</html>

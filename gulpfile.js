@@ -1,20 +1,38 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var header = require('gulp-header');
-var cleanCSS = require('gulp-clean-css');
-var rename = require("gulp-rename");
-var autoprefixer = require('gulp-autoprefixer');
-var pkg = require('./package.json');
-var browserSync = require('browser-sync').create();
+let gulp = require('gulp');
+let sass = require('gulp-sass');
+let header = require('gulp-header');
+let cleanCSS = require('gulp-clean-css');
+let rename = require("gulp-rename");
+let autoprefixer = require('gulp-autoprefixer');
+let pkg = require('./package.json');
+let browserSync = require('browser-sync').create();
 
 // Set the banner content
-var banner = ['/*!\n',
+let banner = ['/*!\n',
 	' */\n',
 	'\n'
 ].join('');
 
 // Copy third party libraries from /node_modules into /vendor
 gulp.task('vendor', function() {
+
+	//React
+	gulp.src([
+		'./node_modules/react/cjs/*'
+	])
+		.pipe(gulp.dest('./vendor/react'));
+
+	//React-Dom
+	gulp.src([
+		'./node_modules/react-dom/cjs/*'
+	])
+		.pipe(gulp.dest('./vendor/react-dom'));
+
+	//React-Bootstrap
+	gulp.src([
+		'./node_modules/react-bootstrap/dist/*'
+	])
+		.pipe(gulp.dest('./vendor/react-bootstrap'));
 
 	// Bootstrap
 	gulp.src([
@@ -57,7 +75,7 @@ gulp.task('vendor', function() {
 
 // Compile SCSS
 gulp.task('css:compile', function() {
-	return gulp.src('./scss/**/*.scss')
+	return gulp.src('./src/scss/**/*.scss')
 		.pipe(sass.sync({
 			outputStyle: 'expanded'
 		}).on('error', sass.logError))
@@ -68,20 +86,20 @@ gulp.task('css:compile', function() {
 		.pipe(header(banner, {
 			pkg: pkg
 		}))
-		.pipe(gulp.dest('./css'))
+		.pipe(gulp.dest('./assets/css'))
 });
 
 // Minify CSS
 gulp.task('css:minify', ['css:compile'], function() {
 	return gulp.src([
-		'./css/*.css',
-		'!./css/*.min.css'
+		'./assets/css/*.css',
+		'!./assets/css/*.min.css'
 	])
 		.pipe(cleanCSS())
 		.pipe(rename({
 			suffix: '.min'
 		}))
-		.pipe(gulp.dest('./css'))
+		.pipe(gulp.dest('./assets/css'))
 		.pipe(browserSync.stream());
 });
 
@@ -102,7 +120,7 @@ gulp.task('browserSync', function() {
 
 // Dev task
 gulp.task('dev', ['css', 'browserSync'], function() {
-	gulp.watch('./scss/*.scss', ['css']);
+	gulp.watch('./src/scss/*.scss', ['css']);
 	gulp.watch('**/*.html', browserSync.reload);
 	gulp.watch('**/*.js', browserSync.reload);
 });
