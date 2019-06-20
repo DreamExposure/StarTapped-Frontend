@@ -1,9 +1,11 @@
 let gulp = require('gulp');
 let sass = require('gulp-sass');
 let header = require('gulp-header');
+let clean = require('gulp-clean');
 let cleanCSS = require('gulp-clean-css');
 let rename = require("gulp-rename");
 let autoprefixer = require('gulp-autoprefixer');
+let minify = require("gulp-minify");
 let pkg = require('./package.json');
 let browserSync = require('browser-sync').create();
 
@@ -103,11 +105,30 @@ gulp.task('css:minify', ['css:compile'], function() {
 		.pipe(browserSync.stream());
 });
 
+//Minify JS
+gulp.task('js:minify', function () {
+    return gulp.src([
+        './src/js/**/*.js',
+        '!./src/js/**/*.min.js'
+    ])
+        .pipe(clean())
+        .pipe(minify({
+            ext: {
+                min: '.min.js',
+            }
+        }))
+        .pipe(gulp.dest('./src/js'))
+        .pipe(browserSync.stream());
+});
+
 // CSS
 gulp.task('css', ['css:compile', 'css:minify']);
 
+// JS
+gulp.task('js', ['js:minify']);
+
 // Default task
-gulp.task('default', ['css', 'vendor']);
+gulp.task('default', ['css', 'js', 'vendor']);
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
@@ -119,7 +140,7 @@ gulp.task('browserSync', function() {
 });
 
 // Dev task
-gulp.task('dev', ['css', 'browserSync'], function() {
+gulp.task('dev', ['css', 'js', 'browserSync'], function () {
 	gulp.watch('./src/scss/*.scss', ['css']);
 	gulp.watch('**/*.html', browserSync.reload);
 	gulp.watch('**/*.js', browserSync.reload);
